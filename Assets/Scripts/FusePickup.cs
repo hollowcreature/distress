@@ -7,6 +7,7 @@ public class FusePickup : MonoBehaviour, IInteractable
     public void Interact()
     {
         FuseSlot.PlayerHasFuse = true;
+        ObjectiveDisplay.Instance.Clear();
         gameObject.SetActive(false);
     }
 }

@@ -2,28 +2,27 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class ThoughtDisplay : MonoBehaviour
+public class ObjectiveDisplay : MonoBehaviour
 {
     [SerializeField] float typeSpeed;
-    [SerializeField] float displayDuration;
     [SerializeField] float fadeDuration;
     [SerializeField] private TMP_Text textComponent;
 
-    public static ThoughtDisplay Instance;
+    public static ObjectiveDisplay Instance;
 
     void Awake()
     {
         Instance = this;
     }
-    public Coroutine Show(string text)
+    public void Show(string text)
     {
         StopAllCoroutines();
-        return StartCoroutine(TypeAndFade(text));
+        StartCoroutine(Type(text));
     }
-    private IEnumerator TypeAndFade(string text)
+    private IEnumerator Type(string text)
     {
         textComponent.text = "";
-        textComponent.alpha = 1;
+        textComponent.alpha = 1f;
 
         foreach (char c in text)
         {
@@ -31,14 +30,22 @@ public class ThoughtDisplay : MonoBehaviour
             yield return new WaitForSeconds(typeSpeed);
         }
 
-        yield return new WaitForSeconds(displayDuration);
+        textComponent.alpha = 0.4f;
+    }
 
+    private IEnumerator FadeOut()
+    {
         float t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime / fadeDuration;
-            textComponent.alpha = Mathf.Lerp(1f, 0f, t);
+            textComponent.alpha = Mathf.Lerp(0.4f, 0f, t);
             yield return null;
         }
+    }
+
+    public void Clear()
+    {
+        StartCoroutine(FadeOut());
     }
 }

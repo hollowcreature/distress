@@ -14,10 +14,12 @@ public class FocusController : MonoBehaviour
     private bool isFocusing;
     private bool isAtAnchor;
     private RepairTask current;
+    private Collider taskCollider;
     private IFocusInteractable hovered;
     private IFocusInteractable pressed;
 
     void Awake() => Instance = this;
+
 
     public void EnterFocus(RepairTask task)
     {
@@ -26,6 +28,11 @@ public class FocusController : MonoBehaviour
 
         isFocusing = true;
         current = task;
+
+        taskCollider = task.GetComponent<Collider>();
+        if (taskCollider != null)
+            taskCollider.enabled = false;
+
         playerMesh.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
@@ -60,6 +67,7 @@ public class FocusController : MonoBehaviour
             Cursor.visible = false;
             SetControls(true);
             isFocusing = false;
+            taskCollider.enabled = true;
             playerMesh.enabled = true;
             current = null;
         }));
