@@ -10,6 +10,8 @@ public class FocusController : MonoBehaviour
     [SerializeField] private float moveDuration = 0.6f;
     [SerializeField] private Transform homeAnchor;
     [SerializeField] private MeshRenderer playerMesh;
+    [SerializeField] private LayerMask focusableLayer;
+    [SerializeField] private Rigidbody playerRB;
 
     private bool isFocusing;
     private bool isAtAnchor;
@@ -17,6 +19,7 @@ public class FocusController : MonoBehaviour
     private Collider taskCollider;
     private IFocusInteractable hovered;
     private IFocusInteractable pressed;
+    private RigidbodyConstraints originalConstraints;
 
     void Awake() => Instance = this;
 
@@ -27,6 +30,8 @@ public class FocusController : MonoBehaviour
             return;
 
         isFocusing = true;
+        originalConstraints = playerRB.constraints;
+        playerRB.constraints = RigidbodyConstraints.FreezeAll;
         current = task;
 
         taskCollider = task.GetComponent<Collider>();
@@ -67,6 +72,7 @@ public class FocusController : MonoBehaviour
             Cursor.visible = false;
             SetControls(true);
             isFocusing = false;
+            playerRB.constraints = originalConstraints;
             taskCollider.enabled = true;
             playerMesh.enabled = true;
             current = null;
@@ -91,7 +97,7 @@ public class FocusController : MonoBehaviour
         if (!Input.GetMouseButton(0))
         {
             IFocusInteractable hit = null;
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 10f))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 10f, focusableLayer))
                 hit = hitInfo.collider.GetComponent<IFocusInteractable>();
 
             if (hit != hovered)

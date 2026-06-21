@@ -9,8 +9,9 @@ public class AntennaTask : RepairTask
 
     private bool isPowered = false;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         prerequisite.OnRepaired += _ => isPowered = true;
     }
 
