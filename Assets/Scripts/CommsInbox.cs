@@ -1,0 +1,98 @@
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.VersionControl;
+using UnityEngine;
+
+[System.Serializable]
+public class CommMessage
+{
+    public string sender;
+    public string timestamp;
+    public string subject;
+    [TextArea] public string body;
+    [HideInInspector] public bool isRead;
+    [HideInInspector] public bool isUnlocked;
+}
+
+public class CommsInbox : MonoBehaviour
+{
+    public static CommsInbox Instance;
+
+    [SerializeField] private AntennaTask commsTask;
+    [SerializeField] private CommMessage[] messages;
+    [SerializeField] private Transform listContainer;
+    [SerializeField] private GameObject messageButtonPrefab;
+    [SerializeField] private TMPro.TMP_Text detailSender;
+    [SerializeField] private TMPro.TMP_Text detailTimestamp;
+    [SerializeField] private TMPro.TMP_Text detailBody;
+    [SerializeField] private GameObject navigationCursor;
+
+    private int currIdx = 0;
+
+    void Awake()
+    {
+        Instance = this;
+        commsTask.OnRepaired += _ => StartCoroutine(UnlockSequence());
+    }
+
+    public void UnlockMessage(int index)
+    {
+        messages[index].isUnlocked = true;
+        RefreshList();
+        // audio and hologram notification
+    }
+
+    public void UnlockNext()
+    {
+        if (currIdx == messages.Length)
+            return;
+
+        UnlockMessage(currIdx);
+        currIdx++;
+    }
+
+    private IEnumerator UnlockSequence()
+    {
+        yield return new WaitForSeconds(2f);
+        UnlockNext();
+        yield return new WaitForSeconds(4f);
+        UnlockNext();
+        yield return new WaitForSeconds(8f);
+        UnlockNext();
+    }
+
+    public void SelectMessage(int index)
+    {
+        messages[index].isRead = true;
+        detailSender.text = messages[index].sender;
+        detailTimestamp.text = messages[index].timestamp;
+        detailBody.text = messages[index].body;
+
+        if (index == messages.Length - 1)
+            navigationCursor.SetActive(true);
+
+        RefreshList();
+    }
+
+    private void RefreshList()
+    {
+        foreach (Transform child in listContainer)
+            Destroy(child.gameObject);
+
+        for (int i = 0; i < messages.Length; i++)
+        {
+            if (!messages[i].isUnlocked)
+                continue;
+
+            GameObject btn = Instantiate(messageButtonPrefab, listContainer);
+            TMPro.TMP_Text label = btn.GetComponentInChildren<TMPro.TMP_Text>();
+            string prefix = messages[i].isRead ? "" : "[NEW] ";
+            label.text = prefix + messages[i].sender + " - " + messages[i].subject;
+
+            int capturedIndex = i;
+            btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => SelectMessage(capturedIndex));
+        }
+
+        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
+    }
+}

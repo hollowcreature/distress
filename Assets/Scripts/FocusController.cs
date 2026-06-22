@@ -147,6 +147,24 @@ public class FocusController : MonoBehaviour
         cam.transform.rotation = targetRot;
         onArrive?.Invoke();
     }
+    public void EnterCutscene(Transform anchor, System.Action onArrived)
+    {
+        playerRB.constraints = RigidbodyConstraints.FreezeAll;
+        playerMesh.enabled = false;
+        SetControls(false);
+        StopAllCoroutines();
+        StartCoroutine(MoveCameraTo(anchor.position, anchor.rotation, onArrived));
+    }
+
+    public void ExitCutscene()
+    {
+        cam.transform.SetPositionAndRotation(homeAnchor.position, homeAnchor.rotation);
+        playerRB.constraints = originalConstraints;
+        playerMesh.enabled = true;
+        SetControls(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void SetControls(bool on)
     {

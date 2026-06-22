@@ -53,5 +53,9 @@ public class ComputerTerminal : RepairTask
         }
     }
 
-    protected override bool AttemptStep() => true;
+    protected override bool AttemptStep()
+    {
+        HologramDisplay.Instance.Show("COURSE SET. \n RETURN TO CRYO SLEEP");
+        return true;
+    }
 }

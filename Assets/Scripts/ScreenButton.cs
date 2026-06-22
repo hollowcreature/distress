@@ -3,6 +3,7 @@ using UnityEngine;
 public class ScreenButton : MonoBehaviour, IFocusInteractable
 {
     [SerializeField] private GameObject door;
+    [SerializeField] private string hologramMessage;
 
     private FocusGlow glow;
 
@@ -17,6 +18,8 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
     public void OnPress()
     {
         door.SetActive(false);
+        if (!string.IsNullOrEmpty(hologramMessage))
+            HologramDisplay.Instance.Show(hologramMessage);
     }
 
     public void OnDrag(Ray mouseRay) { }
