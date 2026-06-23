@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScreenButton : MonoBehaviour, IFocusInteractable
 {
-    [SerializeField] private GameObject door;
+    [SerializeField] private SlidingDoor door;
     [SerializeField] private string hologramMessage;
 
     private FocusGlow glow;
@@ -17,7 +17,7 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
 
     public void OnPress()
     {
-        door.SetActive(false);
+        door.Unlock();
         if (!string.IsNullOrEmpty(hologramMessage))
             HologramDisplay.Instance.Show(hologramMessage);
     }

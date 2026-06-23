@@ -11,6 +11,8 @@ public class IntroSequence : MonoBehaviour
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeMagnitude = 0.1f;
     [SerializeField] private float wakeUpFadeDuration = 2f;
+    [SerializeField] private SlidingDoor genDoorLeft;
+    [SerializeField] private SlidingDoor genDoorRight;
 
     private bool crashed = false;
     private Coroutine countdownCoroutine;
@@ -63,11 +65,14 @@ public class IntroSequence : MonoBehaviour
             alarmAudio.Stop();
 
         yield return StartCoroutine(ShakeCamera());
-        yield return ScreenFader.Instance.FadeToBlack(0.3f);
+        yield return ScreenFader.Instance.FadeToBlack(0.05f);
         playerRoot.SetPositionAndRotation(wakeUpPosition.position, wakeUpPosition.rotation);
         yield return new WaitForSeconds(2f);
         HologramDisplay.Instance.Show("EMERGENCY GENERATOR INITIATED\n PLEASE RESTORE POWER");
         yield return ScreenFader.Instance.FadeFromBlack(wakeUpFadeDuration);
+        yield return new WaitForSeconds(2f);
+        genDoorLeft.Open();
+        genDoorRight.Open();
     }
 
     private IEnumerator ShakeCamera()
