@@ -8,5 +8,6 @@ public class KeyPickup : MonoBehaviour, IInteractable
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         hasKey = true;
+        ObjectiveDisplay.Instance.Clear();
     }
 }

@@ -5,6 +5,7 @@ public class CryoPod : MonoBehaviour, IInteractable
 {
     [SerializeField] ComputerTerminal terminal;
     [SerializeField] private Transform podInteriorAnchor;
+    [SerializeField] private Collider endgameTrigger;
 
     void Awake()
     {
@@ -29,6 +30,9 @@ public class CryoPod : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(3f);
         FocusController.Instance.ExitCutscene();
         yield return ScreenFader.Instance.FadeFromBlack();
+        endgameTrigger.enabled = true;
+        yield return new WaitForSeconds(2f);
+        HologramDisplay.Instance.Show("TARGET PLANET REACHED");
     }
 
 }

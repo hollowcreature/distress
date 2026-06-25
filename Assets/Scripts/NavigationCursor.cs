@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class NavigationCursor : MonoBehaviour, IFocusInteractable
@@ -7,16 +8,20 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
     [SerializeField] private float snapRadius = 0.05f;
     [SerializeField] private ComputerTerminal terminal;
     [SerializeField] private RectTransform canvas;
+    [SerializeField] private float fadeDuration;
 
     private FocusGlow glow;
     private Plane dragPlane;
     private Vector3 grabWorldPoint;
     private Vector3 grabOffset;
+    private CanvasGroup canvasGroup;
     private bool completed;
 
     void Awake()
     {
         glow = GetComponent<FocusGlow>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        terminal.OnRepaired += _ => StartCoroutine(FadeOut());
     }
 
     public void OnHoverEnter() => glow.Show();
@@ -64,5 +69,17 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
             completed = true;
             terminal.TryRepair();
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / fadeDuration;
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 }

@@ -20,6 +20,7 @@ public class CommsInbox : MonoBehaviour
 
     [SerializeField] private AntennaTask commsTask;
     [SerializeField] private CommMessage[] messages;
+    [SerializeField] private CommMessage[] redownloadedMessages;
     [SerializeField] private Transform listContainer;
     [SerializeField] private GameObject messageButtonPrefab;
     [SerializeField] private TMPro.TMP_Text detailSender;
@@ -94,5 +95,18 @@ public class CommsInbox : MonoBehaviour
         }
 
         UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
+    }
+
+    public void Redownload()
+    {
+        messages = redownloadedMessages;
+        currIdx = 0;
+        foreach (var m in messages)
+        {
+            m.isUnlocked = false;
+            m.isRead = false;
+        }
+        RefreshList();
+        StartCoroutine(UnlockSequence());
     }
 }

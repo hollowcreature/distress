@@ -40,6 +40,9 @@ public class SlidingDoor : MonoBehaviour
 
     public void Toggle()
     {
+        if (!isUnlocked)
+            ThoughtDisplay.Instance.Show("It's locked...");
+
         if (isOpen)
             Close();
         else

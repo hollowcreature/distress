@@ -9,6 +9,7 @@ public abstract class RepairTask : MonoBehaviour, IInteractable
     public Transform CameraAnchor => cameraAnchor;
     public event Action<RepairTask> OnRepaired;
     public bool IsRepaired { get; private set; }
+    public virtual bool AlwaysInteractable => false;
 
     public void Interact() => FocusController.Instance.EnterFocus(this);
 

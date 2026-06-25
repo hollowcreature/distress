@@ -20,16 +20,18 @@ public class FocusController : MonoBehaviour
     private IFocusInteractable hovered;
     private IFocusInteractable pressed;
     private RigidbodyConstraints originalConstraints;
+    private Quaternion preFocusRotation;
 
     void Awake() => Instance = this;
 
 
     public void EnterFocus(RepairTask task)
     {
-        if (isFocusing || task.IsRepaired)
+        if (isFocusing || (task.IsRepaired && !task.AlwaysInteractable))
             return;
 
         isFocusing = true;
+        preFocusRotation = cam.transform.rotation;
         originalConstraints = playerRB.constraints;
         playerRB.constraints = RigidbodyConstraints.FreezeAll;
         current = task;
@@ -66,7 +68,7 @@ public class FocusController : MonoBehaviour
 
         isAtAnchor = false;
         StopAllCoroutines();
-        StartCoroutine(MoveCameraTo(homeAnchor.position, homeAnchor.rotation, () =>
+        StartCoroutine(MoveCameraTo(homeAnchor.position, preFocusRotation, () =>
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
