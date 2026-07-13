@@ -9,6 +9,11 @@ public class ConfirmButton : MonoBehaviour, IFocusInteractable
     [SerializeField] private float pressDuration = 0.1f;
     [SerializeField] private float returnDuration = 0.15f;
 
+    [SerializeField] private RepairTask requiredTask;
+    [SerializeField] private RepairTask generatorTask;
+    [SerializeField] private RepairTask sensorTask;
+    [SerializeField] private string blockedThought;
+
     private FocusGlow glow;
     private RepairTask task;
     private Vector3 restLocalPos;
@@ -25,6 +30,13 @@ public class ConfirmButton : MonoBehaviour, IFocusInteractable
 
     public void OnPress()
     {
+        if (!generatorTask.IsRepaired)
+            ThoughtDisplay.Instance.Show("I need to get the power on first");
+        else if (sensorTask != null && !sensorTask.IsRepaired)
+            ThoughtDisplay.Instance.Show("I need to fix the sensors");
+        else if (requiredTask != null && !requiredTask.IsRepaired)
+            ThoughtDisplay.Instance.Show(blockedThought);
+
         StopAllCoroutines();
         StartCoroutine(PressAnim());
         task.TryRepair();

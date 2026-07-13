@@ -26,6 +26,7 @@ public class CryoPod : MonoBehaviour, IInteractable
 
     private IEnumerator SleepSequence()
     {
+        GetComponent<Collider>().enabled = false;
         yield return ScreenFader.Instance.FadeToBlack();
         yield return new WaitForSeconds(3f);
         FocusController.Instance.ExitCutscene();

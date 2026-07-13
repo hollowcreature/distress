@@ -67,6 +67,9 @@ public class FocusController : MonoBehaviour
         }
 
         isAtAnchor = false;
+        hovered?.OnHoverExit();
+        hovered = null;
+
         StopAllCoroutines();
         StartCoroutine(MoveCameraTo(homeAnchor.position, preFocusRotation, () =>
         {

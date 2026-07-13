@@ -8,6 +8,7 @@ public class AntennaDial : MonoBehaviour, IFocusInteractable
     [SerializeField] private float tolerance = 15f;
 
     public float Angle { get; private set; }
+    public float TargetAngle => targetAngle;
     public bool IsAligned => Mathf.Abs(Mathf.DeltaAngle(Angle, targetAngle)) <= tolerance;
 
     private FocusGlow glow;

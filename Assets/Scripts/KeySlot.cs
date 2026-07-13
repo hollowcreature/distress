@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class KeySlot : MonoBehaviour, IFocusInteractable
 {
+    [SerializeField] private KeyHandle keyHandle;
     [SerializeField] private KeyPickup key;
     [SerializeField] private GameObject keyObject;
     [SerializeField] private Transform insertAnchor;
@@ -61,5 +62,7 @@ public class KeySlot : MonoBehaviour, IFocusInteractable
         }
         keyObject.transform.localPosition = insertAnchor.localPosition;
         keyCollider.enabled = true;
+
+        keyHandle.isInserted = true;
     }
 }

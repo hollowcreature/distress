@@ -13,11 +13,34 @@ public class KeyHandle : MonoBehaviour, IFocusInteractable
     private Vector3 grabWorldPoint;
     private Plane grabPlane;
 
+    public bool isInserted = false;
+    private float idleTimer = 0f;
+    private bool thoughtShown = false;
+    private bool isDragging = false;
+
     void Awake()
     {
         glow = GetComponent<FocusGlow>();
         initialLocalRot = pivot.localRotation;
         angle = 0f;
+    }
+
+    void Update()
+    {
+        if (!isInserted || thoughtShown) return;
+
+        if (isDragging)
+        {
+            idleTimer = 0f;
+            isDragging = false;
+        }
+
+        idleTimer += Time.deltaTime;
+        if (idleTimer >= 4f)
+        {
+            ThoughtDisplay.Instance.Show("A key should be turned after inserted...");
+            idleTimer = -10f;
+        }
     }
 
     public void OnHoverEnter() => glow.Show();
@@ -35,6 +58,7 @@ public class KeyHandle : MonoBehaviour, IFocusInteractable
     {
         if (!grabPlane.Raycast(mouseRay, out float enter)) return;
 
+        isDragging = true;
         Vector3 currentHit = mouseRay.GetPoint(enter);
         Vector3 worldAxis = pivot.TransformDirection(rotationAxis.normalized);
         Vector3 fromVec = Vector3.ProjectOnPlane(grabWorldPoint - pivot.position, worldAxis).normalized;
@@ -50,6 +74,10 @@ public class KeyHandle : MonoBehaviour, IFocusInteractable
     public void OnRelease()
     {
         if (angle >= 90f)
+        {
+            thoughtShown = true;
             task.TryRepair();
+        }
+
     }
 }

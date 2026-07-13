@@ -14,6 +14,9 @@ public class Interaction : MonoBehaviour
         else
             current_interactable = null;
 
+        if (current_interactable is RepairTask task && task.IsRepaired && !task.AlwaysInteractable)
+            current_interactable = null;
+
         interact_prompt.SetActive(current_interactable != null);
 
         if (Input.GetKeyDown(KeyCode.E) && current_interactable != null)
