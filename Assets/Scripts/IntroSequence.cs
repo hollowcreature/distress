@@ -12,7 +12,6 @@ public class IntroSequence : MonoBehaviour
     [SerializeField] private float shakeMagnitude = 0.1f;
     [SerializeField] private float wakeUpFadeDuration = 2f;
     [SerializeField] private SlidingDoor genDoorLeft;
-    [SerializeField] private SlidingDoor genDoorRight;
 
     private bool crashed = false;
     private Coroutine countdownCoroutine;
@@ -72,7 +71,6 @@ public class IntroSequence : MonoBehaviour
         yield return ScreenFader.Instance.FadeFromBlack(wakeUpFadeDuration);
         yield return new WaitForSeconds(2f);
         genDoorLeft.Open();
-        genDoorRight.Open();
     }
 
     private IEnumerator ShakeCamera()
