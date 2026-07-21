@@ -8,9 +8,9 @@ public class ConfirmLever : MonoBehaviour, IFocusInteractable
     [SerializeField] private float minAngle = 0f;
     [SerializeField] private float maxAngle = 90f;
     [SerializeField] private float activationThreshold = 0.7f;
+    [SerializeField] private RepairTask task;
 
     private FocusGlow glow;
-    private RepairTask task;
     private Quaternion initialLocalRot;
     private float currentAngle;
     private float initialAngle;
@@ -20,7 +20,6 @@ public class ConfirmLever : MonoBehaviour, IFocusInteractable
     void Awake()
     {
         glow = GetComponent<FocusGlow>();
-        task = GetComponentInParent<RepairTask>();
         initialLocalRot = pivot.localRotation;
         currentAngle = 0f;
     }

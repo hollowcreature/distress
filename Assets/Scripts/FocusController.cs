@@ -12,6 +12,7 @@ public class FocusController : MonoBehaviour
     [SerializeField] private MeshRenderer playerMesh;
     [SerializeField] private LayerMask focusableLayer;
     [SerializeField] private Rigidbody playerRB;
+    [SerializeField] private GameObject crosshair;
 
     private bool isFocusing;
     private bool isAtAnchor;
@@ -40,6 +41,7 @@ public class FocusController : MonoBehaviour
         if (taskCollider != null)
             taskCollider.enabled = false;
 
+        crosshair.SetActive(false);
         playerMesh.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
@@ -79,6 +81,7 @@ public class FocusController : MonoBehaviour
             isFocusing = false;
             playerRB.constraints = originalConstraints;
             taskCollider.enabled = true;
+            crosshair.SetActive(true);
             playerMesh.enabled = true;
             current = null;
         }));

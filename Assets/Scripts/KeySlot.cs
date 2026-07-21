@@ -11,7 +11,7 @@ public class KeySlot : MonoBehaviour, IFocusInteractable
 
     private FocusGlow glow;
     private Collider keyCollider;
-    private Renderer keyRenderer;
+    private Renderer[] keyRenderers;
     private Vector3 keyStartPos;
 
     private bool inserted = false;
@@ -20,11 +20,12 @@ public class KeySlot : MonoBehaviour, IFocusInteractable
     {
         glow = GetComponent<FocusGlow>();
         keyCollider = keyObject.GetComponent<Collider>();
-        keyRenderer = keyObject.GetComponent<Renderer>();
+        keyRenderers = keyObject.GetComponentsInChildren<Renderer>();
 
         keyStartPos = keyObject.transform.localPosition;
         keyCollider.enabled = false;
-        keyRenderer.enabled = false;
+        foreach (var r in keyRenderers)
+            r.enabled = false;
     }
 
     public void OnHoverEnter() => glow.Show();
@@ -42,7 +43,8 @@ public class KeySlot : MonoBehaviour, IFocusInteractable
             return;
 
         inserted = true;
-        keyRenderer.enabled = true;
+        foreach (var r in keyRenderers)
+            r.enabled = true;
         StartCoroutine(InsertKey());
     }
 
