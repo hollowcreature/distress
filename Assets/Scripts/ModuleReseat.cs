@@ -48,7 +48,7 @@ public class ModuleReseat : MonoBehaviour, IFocusInteractable
         Vector3 currentHit = mouseRay.GetPoint(enter);
         Vector3 worldDelta = currentHit - grabWorldPoint;
         Vector3 localDelta = moduleTransform.InverseTransformVector(worldDelta);
-        float pushDelta = Vector3.Dot(localDelta, pushAxis.normalized);
+        float pushDelta = -Vector3.Dot(localDelta, pushAxis.normalized);
 
         currentPush = Mathf.Clamp(pushAtPress + pushDelta, 0f, pushDistance);
         moduleTransform.localPosition = initialLocalPos + pushAxis.normalized * currentPush;

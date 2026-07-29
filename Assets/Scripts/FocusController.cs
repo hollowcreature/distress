@@ -23,6 +23,8 @@ public class FocusController : MonoBehaviour
     private RigidbodyConstraints originalConstraints;
     private Quaternion preFocusRotation;
 
+    public bool IsFocusing => isFocusing;
+
     void Awake() => Instance = this;
 
 

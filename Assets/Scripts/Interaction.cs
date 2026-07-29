@@ -8,6 +8,12 @@ public class Interaction : MonoBehaviour
 
     void Update()
     {
+        if (FocusController.Instance.IsFocusing)
+        {
+            interact_prompt.SetActive(false);
+            return;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, interact_range))
             current_interactable = hit.collider.GetComponent<IInteractable>();
