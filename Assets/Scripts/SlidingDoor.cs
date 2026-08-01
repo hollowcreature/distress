@@ -49,6 +49,40 @@ public class SlidingDoor : MonoBehaviour
             Open();
     }
 
+    public void OpenBroken()
+    {
+        if (isMoving) return;
+        StartCoroutine(SlideBroken());
+        isOpen = true;
+    }
+
+    private IEnumerator SlideBroken()
+    {
+        isMoving = true;
+        Vector3 halfOpen = closedPosition + openOffset * 0.5f;
+        Vector3 wobbleA = halfOpen + openOffset.normalized * 0.06f;
+        Vector3 wobbleB = halfOpen - openOffset.normalized * 0.06f;
+
+        yield return SlideStep(transform.localPosition, halfOpen, duration);
+
+        while (true)
+        {
+            Vector3 target = halfOpen + openOffset.normalized * Random.Range(-0.08f, 0.08f);
+            yield return SlideStep(transform.localPosition, target, Random.Range(0.08f, 0.25f));
+        }
+    }
+
+    private IEnumerator SlideStep(Vector3 from, Vector3 to, float dur)
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / dur;
+            transform.localPosition = Vector3.Lerp(from, to, t);
+            yield return null;
+        }
+    }
+
     private IEnumerator Slide(Vector3 target)
     {
         isMoving = true;

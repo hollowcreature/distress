@@ -11,7 +11,7 @@ public abstract class RepairTask : MonoBehaviour, IInteractable
     public bool IsRepaired { get; private set; }
     public virtual bool AlwaysInteractable => false;
 
-    public void Interact() => FocusController.Instance.EnterFocus(this);
+    public virtual void Interact() => FocusController.Instance.EnterFocus(this);
 
     public bool TryRepair()
     {
