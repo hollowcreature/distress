@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class CryoPod : MonoBehaviour, IInteractable
 {
-    [SerializeField] ComputerTerminal terminal;
     [SerializeField] private Transform podInteriorAnchor;
     [SerializeField] private Collider endgameTrigger;
 
+    public Collider cryoCollider;
     void Awake()
     {
-        Collider collider = GetComponent<Collider>();
-        collider.enabled = false;
-        terminal.OnRepaired += _ => collider.enabled = true;
+        cryoCollider = GetComponent<Collider>();
+        cryoCollider.enabled = false;
     }
 
     public void Interact()

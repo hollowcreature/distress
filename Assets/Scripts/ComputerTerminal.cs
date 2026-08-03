@@ -14,10 +14,6 @@ public class ComputerTerminal : RepairTask
     protected override void Awake()
     {
         base.Awake();
-        foreach (RepairTask task in new RepairTask[] { generatorTask, sensorTask, commsTask })
-        {
-            task.OnRepaired += _ => UpdateScreen();
-        }
 
         logsButton.GetComponent<CanvasGroup>().alpha = 0f;
         Material mat = logsButton.GetComponent<Renderer>().material;
@@ -30,11 +26,11 @@ public class ComputerTerminal : RepairTask
         UpdateScreen();
     }
 
-    void UpdateScreen()
+    public void UpdateScreen()
     {
         if (commsTask.IsRepaired)
         {
-            screenText.text = "NAVIGATION ONLINE - SET COURSE";
+            screenText.text = "ALL SYSTEMS OPERATIONAL";
         }
         else if (sensorTask.IsRepaired)
         {

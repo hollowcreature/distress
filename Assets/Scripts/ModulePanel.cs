@@ -11,7 +11,7 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
     [SerializeField] private float unlockThreshold = 0.5f;
     [SerializeField] private float activationThreshold = 0.95f;
     [SerializeField] private float springBackDuration = 1f;
-    [SerializeField] private float closeDuration = 2f;
+    [SerializeField] public float closeDuration = 2f;
     [SerializeField] private float resistanceMultiplier = 0.4f;
 
     private FocusGlow glow;
@@ -28,7 +28,6 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
         glow = GetComponent<FocusGlow>();
         initialLocalRot = pivot.localRotation;
         currentAngle = 0f;
-        module.OnRepaired += _ => StartCoroutine(SpringBack(closeDuration));
     }
 
     public void OnHoverEnter() => glow.Show();
@@ -83,7 +82,7 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
             StartCoroutine(SpringBack(springBackDuration));
     }
 
-    private IEnumerator SpringBack(float duration)
+    public IEnumerator SpringBack(float duration)
     {
         float startAngle = currentAngle;
         float t = 0f;

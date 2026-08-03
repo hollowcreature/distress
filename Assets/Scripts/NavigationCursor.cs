@@ -21,7 +21,6 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
     {
         glow = GetComponent<FocusGlow>();
         canvasGroup = GetComponent<CanvasGroup>();
-        terminal.OnRepaired += _ => StartCoroutine(FadeOut());
     }
 
     public void OnHoverEnter() => glow.Show();
@@ -71,7 +70,7 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
         }
     }
 
-    private IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
         float t = 0f;
         while (t < 1f)

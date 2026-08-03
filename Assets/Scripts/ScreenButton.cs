@@ -7,7 +7,6 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
 {
     [SerializeField] private SlidingDoor door;
     [SerializeField] private GlassBreak glass;
-    [SerializeField] private KeySlotTask keyTask;
     [SerializeField] private string hologramMessage;
     [SerializeField][TextArea] private string endgameMessage;
     [SerializeField] private float fadeDuration;
@@ -17,7 +16,7 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
     private CanvasGroup canvasGroup;
     private Renderer buttonRenderer;
     private Material buttonMat;
-    private bool escalatedPrivilege;
+    public bool escalatedPrivilege;
 
     void Awake()
     {
@@ -25,11 +24,6 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
         canvasGroup = GetComponent<CanvasGroup>();
         buttonRenderer = GetComponent<Renderer>();
         buttonMat = buttonRenderer.material;
-        keyTask.OnRepaired += _ =>
-        {
-            escalatedPrivilege = true;
-            HologramDisplay.Instance.Show("EMERGENCY PRIVILEGE ESCALATION INITIATED");
-        };
     }
 
     public void OnHoverEnter() => glow.Show();

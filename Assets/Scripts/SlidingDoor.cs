@@ -38,15 +38,17 @@ public class SlidingDoor : MonoBehaviour
         isOpen = false;
     }
 
-    public void Toggle()
+    public bool Toggle()
     {
         if (!isUnlocked)
+        {
             ThoughtDisplay.Instance.Show("It's locked...");
+            return false;
+        }
 
-        if (isOpen)
-            Close();
-        else
-            Open();
+        if (isOpen) Close();
+        else Open();
+        return true;
     }
 
     public void OpenBroken()

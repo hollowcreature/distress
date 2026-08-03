@@ -4,6 +4,10 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private SlidingDoor door;
+    [SerializeField] private Renderer monitor;
+    [SerializeField] private Material idleMat;
+    [SerializeField] private Material greenMat;
+    [SerializeField] private Material redMat;
     [SerializeField] private Transform buttonTop;
     [SerializeField] private Vector3 pressDirection;
     [SerializeField] private float pressDepth = 0.02f;
@@ -19,9 +23,17 @@ public class DoorButton : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        door.Toggle();
+        bool success = door.Toggle();
         StopAllCoroutines();
         StartCoroutine(PressAnim());
+        StartCoroutine(FlashMonitor(success ? greenMat : redMat));
+    }
+
+    private IEnumerator FlashMonitor(Material mat)
+    {
+        monitor.material = mat;
+        yield return new WaitForSeconds(1f);
+        monitor.material = idleMat;
     }
 
     private IEnumerator PressAnim()

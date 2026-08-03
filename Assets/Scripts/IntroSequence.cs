@@ -13,11 +13,19 @@ public class IntroSequence : MonoBehaviour
     [SerializeField] private float wakeUpFadeDuration = 2f;
     [SerializeField] private SlidingDoor genDoorLeft;
 
+    [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private Light[] sceneLights;
+    [SerializeField] private Light[] emergencyLights;
+    [SerializeField] private Renderer[] emissivePanels;
+    [SerializeField] private Material darkPanelMat;
+    [SerializeField] private Material emissivePanelMat;
+
     private bool crashed = false;
     private Coroutine countdownCoroutine;
 
     void Start()
     {
+        mainCanvas.SetActive(true);
         StartCoroutine(IntroFadeIn());
     }
 
@@ -64,6 +72,7 @@ public class IntroSequence : MonoBehaviour
             alarmAudio.Stop();
 
         yield return StartCoroutine(ShakeCamera());
+        TurnOffLights();
         yield return ScreenFader.Instance.FadeToBlack(0.05f);
         playerRoot.SetPositionAndRotation(wakeUpPosition.position, wakeUpPosition.rotation);
         yield return new WaitForSeconds(2f);
@@ -71,6 +80,20 @@ public class IntroSequence : MonoBehaviour
         yield return ScreenFader.Instance.FadeFromBlack(wakeUpFadeDuration);
         yield return new WaitForSeconds(2f);
         genDoorLeft.Open();
+    }
+
+    private void TurnOffLights()
+    {
+        foreach (var light in sceneLights) light.enabled = false;
+        foreach (var panel in emissivePanels) panel.material = darkPanelMat;
+        foreach (var light in emergencyLights) light.enabled = true;
+    }
+
+    public void RestoreLights()
+    {
+        foreach (var light in emergencyLights) light.enabled = false;
+        foreach (var light in sceneLights) light.enabled = true;
+        foreach (var panel in emissivePanels) panel.material = emissivePanelMat;
     }
 
     private IEnumerator ShakeCamera()

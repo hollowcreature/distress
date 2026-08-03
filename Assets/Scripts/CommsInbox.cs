@@ -33,7 +33,6 @@ public class CommsInbox : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        commsTask.OnRepaired += _ => StartCoroutine(UnlockSequence());
     }
 
     public void UnlockMessage(int index)
@@ -52,7 +51,7 @@ public class CommsInbox : MonoBehaviour
         currIdx++;
     }
 
-    private IEnumerator UnlockSequence()
+    public IEnumerator UnlockSequence()
     {
         yield return new WaitForSeconds(2f);
         UnlockNext();

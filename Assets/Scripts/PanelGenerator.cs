@@ -19,7 +19,6 @@ public class PanelGenerator : RepairTask
         foreach (var slider in sliders)
             if (!slider.IsCorrect) return false;
 
-        HologramDisplay.Instance.Clear();
         return true;
     }
 }
