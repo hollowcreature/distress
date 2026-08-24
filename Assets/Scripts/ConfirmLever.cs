@@ -9,6 +9,8 @@ public class ConfirmLever : MonoBehaviour, IFocusInteractable
     [SerializeField] private float maxAngle = 90f;
     [SerializeField] private float activationThreshold = 0.7f;
     [SerializeField] private RepairTask task;
+    [SerializeField] private AudioSource leverCompleteSound;
+    [SerializeField] private AudioSource onDragSound;
 
     private FocusGlow glow;
     private Quaternion initialLocalRot;
@@ -33,6 +35,11 @@ public class ConfirmLever : MonoBehaviour, IFocusInteractable
         grabWorldPoint = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : pivot.position;
         grabPlane = new Plane(-Camera.main.transform.forward, grabWorldPoint);
         initialAngle = currentAngle;
+
+        if (!onDragSound.isPlaying)
+            onDragSound.Play();
+        else
+            onDragSound.UnPause();
     }
 
     public void OnDrag(Ray mouseRay)
@@ -53,8 +60,14 @@ public class ConfirmLever : MonoBehaviour, IFocusInteractable
 
     public void OnRelease()
     {
+
+        onDragSound.Pause();
         float activationAngle = minAngle + (maxAngle - minAngle) * activationThreshold;
         if (currentAngle >= activationAngle)
+        {
+            onDragSound.Stop();
+            leverCompleteSound.Play();
             task.TryRepair();
+        }
     }
 }

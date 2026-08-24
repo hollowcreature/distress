@@ -10,6 +10,7 @@ public class PanelSlider : MonoBehaviour, IFocusInteractable
     [SerializeField] private Transform sliderTransform;
     [SerializeField] private Vector3 slideDirection = Vector3.up;
     [SerializeField] private float slideStep = 0.05f;
+    [SerializeField] private AudioSource slideSound;
 
     public int CurrentPosition { get; private set; }
     public bool IsCorrect => CurrentPosition == targetPosition;
@@ -49,6 +50,8 @@ public class PanelSlider : MonoBehaviour, IFocusInteractable
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         grabPlane.Raycast(ray, out float enter);
         grabWorldPoint = ray.GetPoint(enter);
+        if (!slideSound.isPlaying)
+            slideSound.Play();
     }
 
     public void OnDrag(Ray mouseRay)

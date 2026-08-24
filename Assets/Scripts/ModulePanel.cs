@@ -13,6 +13,10 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
     [SerializeField] private float springBackDuration = 1f;
     [SerializeField] public float closeDuration = 2f;
     [SerializeField] private float resistanceMultiplier = 0.4f;
+    [SerializeField] private AudioClip squeakStart;
+    [SerializeField] private AudioClip squeakLoop;
+    [SerializeField] private AudioClip squeakEnd;
+    [SerializeField] private AudioSource panelSound;
 
     private FocusGlow glow;
     private Quaternion initialLocalRot;
@@ -38,6 +42,9 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
         if (activated)
             return;
 
+        panelSound.generator = squeakStart;
+        panelSound.Play();
+
         StopAllCoroutines();
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -52,6 +59,13 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
             return;
 
         if (!grabPlane.Raycast(mouseRay, out float enter)) return;
+
+        panelSound.generator = squeakLoop;
+
+        if (!panelSound.isPlaying)
+            panelSound.Play();
+        else
+            panelSound.UnPause();
 
         float resistance = unlocked ? 1f : resistanceMultiplier;
 
@@ -73,13 +87,23 @@ public class ModulePanel : MonoBehaviour, IFocusInteractable
         }
 
         if (!activated && currentAngle >= maxAngle * activationThreshold)
+        {
+            panelSound.Stop();
+            panelSound.generator = squeakEnd;
+            panelSound.Play();
             activated = true;
+        }
     }
 
     public void OnRelease()
     {
         if (!unlocked)
+        {
             StartCoroutine(SpringBack(springBackDuration));
+            panelSound.Stop();
+            panelSound.generator = squeakEnd;
+            panelSound.Play();
+        }
     }
 
     public IEnumerator SpringBack(float duration)

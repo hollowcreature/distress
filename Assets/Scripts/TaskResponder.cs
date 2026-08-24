@@ -25,13 +25,15 @@ public class TaskResponder : MonoBehaviour
             HologramDisplay.Instance.Clear();
             computerTerminal.UpdateScreen();
             introSequence.RestoreLights();
-            HologramDisplay.Instance.Show("EMERGENCY GENERATOR — POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV DISTRESS \n DATE: 2401.03.14 \n UPTIME: 47 YEARS 3 MONTHS 12 DAYS \n STATUS: CRITICAL");
+            SoundManager.Instance.shipHum.Play();
+            SoundManager.Instance.genHum.Play();
+            HologramDisplay.Instance.Show("EMERGENCY GENERATOR — POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n UPTIME: 4 YEARS 6 MONTHS 1 DAYS \n STATUS: CRITICAL");
         };
 
         senTask.OnRepaired += _ =>
         {
             computerTerminal.UpdateScreen();
-            HologramDisplay.Instance.Show("SENSOR ARRAY ONLINE \n SCANNING ENVIRONMENT... \n PROXIMITY: CLEAR \n DEBRIS FIELD: NONE DETECTED \n NEAREST BODY: SOL SYSTEM — 0.3 LY \n ESTIMATED ARRIVAL: 847 DAYS");
+            HologramDisplay.Instance.Show("SENSOR ARRAY ONLINE \n SCANNING ENVIRONMENT... \n PROXIMITY: CLEAR \n DEBRIS FIELD: NONE DETECTED \n NEAREST BODY: SOL SYSTEM — 0.3 LY \n ESTIMATED ARRIVAL: 43 DAYS");
         };
 
         commsTask.OnRepaired += _ =>

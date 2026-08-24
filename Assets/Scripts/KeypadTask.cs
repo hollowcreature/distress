@@ -14,6 +14,10 @@ public class KeypadTask : RepairTask
     [SerializeField] private string grantedThought;
     [SerializeField] private RepairTask keyTask;
 
+    [SerializeField] private AudioClip deniedSound;
+    [SerializeField] private AudioClip grantedSound;
+    [SerializeField] private AudioSource accessSound;
+
     public override void Interact()
     {
         keypadCanvas.gameObject.SetActive(true);
@@ -42,6 +46,8 @@ public class KeypadTask : RepairTask
         yield return new WaitForSeconds(1f);
         numbergroup.SetActive(false);
 
+        accessSound.generator = grantedSound;
+        accessSound.Play();
         grantedText.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         grantedText.gameObject.SetActive(false);
@@ -54,9 +60,11 @@ public class KeypadTask : RepairTask
     {
         yield return new WaitForSeconds(1f);
         numbergroup.SetActive(false);
+        accessSound.generator = deniedSound;
 
         for (int i = 0; i < 3; i++)
         {
+            accessSound.Play();
             deniedText.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.4f);
             deniedText.gameObject.SetActive(false);

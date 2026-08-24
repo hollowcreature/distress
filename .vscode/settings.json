@@ -56,6 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "distress.sln",
-    "editor.semanticHighlighting.enabled": false
+    "dotnet.defaultSolution": "distress.slnx",
+    "editor.semanticHighlighting.enabled": false,
+    "FSharp.suggestGitignore": false
 }

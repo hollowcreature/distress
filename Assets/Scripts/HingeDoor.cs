@@ -5,6 +5,7 @@ public class HingeDoor : MonoBehaviour
 {
     [SerializeField] private float openAngle = 90f;
     [SerializeField] private float duration = 0.5f;
+    [SerializeField] private AudioSource openSound;
 
     private bool isOpen = false;
     private bool isMoving = false;
@@ -22,6 +23,7 @@ public class HingeDoor : MonoBehaviour
     {
         if (isOpen || isMoving || locked) return;
         isOpen = true;
+        openSound.Play();
         hingeCollider.enabled = false;
         StartCoroutine(Rotate(Quaternion.Euler(0, openAngle, 0)));
     }
@@ -29,6 +31,7 @@ public class HingeDoor : MonoBehaviour
     public void Close()
     {
         if (!isOpen || isMoving) return;
+        openSound.Play();
         isOpen = false;
         StartCoroutine(Rotate(closedRot));
     }

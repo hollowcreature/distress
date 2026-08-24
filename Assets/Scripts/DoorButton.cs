@@ -14,6 +14,11 @@ public class DoorButton : MonoBehaviour, IInteractable
     [SerializeField] private float pressDuration = 0.1f;
     [SerializeField] private float returnDuration = 0.15f;
 
+    [SerializeField] private AudioClip accessGrantedSound;
+    [SerializeField] private AudioClip accessDeniedSound;
+    [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private AudioSource accessSound;
+
     private Vector3 restLocalPos;
 
     void Awake()
@@ -24,14 +29,18 @@ public class DoorButton : MonoBehaviour, IInteractable
     public void Interact()
     {
         bool success = door.Toggle();
+        buttonSound.Play();
         StopAllCoroutines();
         StartCoroutine(PressAnim());
-        StartCoroutine(FlashMonitor(success ? greenMat : redMat));
+        StartCoroutine(FlashMonitor(success ? greenMat : redMat, success ? accessGrantedSound : accessDeniedSound));
     }
 
-    private IEnumerator FlashMonitor(Material mat)
+    private IEnumerator FlashMonitor(Material mat, AudioClip sound)
     {
         monitor.material = mat;
+        accessSound.generator = sound;
+        if (!accessSound.isPlaying)
+            accessSound.Play();
         yield return new WaitForSeconds(1f);
         monitor.material = idleMat;
     }

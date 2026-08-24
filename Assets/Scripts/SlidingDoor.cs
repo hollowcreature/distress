@@ -25,6 +25,8 @@ public class SlidingDoor : MonoBehaviour
         if (!isUnlocked || isMoving)
             return;
 
+        if (openSound != null)
+            openSound.Play();
         StartCoroutine(Slide(closedPosition + openOffset));
         isOpen = true;
     }
@@ -34,6 +36,7 @@ public class SlidingDoor : MonoBehaviour
         if (!isUnlocked || isMoving)
             return;
 
+        openSound.Play();
         StartCoroutine(Slide(closedPosition));
         isOpen = false;
     }
@@ -54,6 +57,7 @@ public class SlidingDoor : MonoBehaviour
     public void OpenBroken()
     {
         if (isMoving) return;
+        openSound.Play();
         StartCoroutine(SlideBroken());
         isOpen = true;
     }

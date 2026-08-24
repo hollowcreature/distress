@@ -11,12 +11,15 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
     [SerializeField][TextArea] private string endgameMessage;
     [SerializeField] private float fadeDuration;
     [SerializeField] private bool doorButton;
+    [SerializeField] private EndingSequence endingSequence;
+    [SerializeField] private AudioSource pressSound;
 
     private FocusGlow glow;
     private CanvasGroup canvasGroup;
     private Renderer buttonRenderer;
     private Material buttonMat;
     public bool escalatedPrivilege;
+    private bool endingStarted = false;
 
     void Awake()
     {
@@ -31,6 +34,8 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
 
     public void OnPress()
     {
+        pressSound.Play();
+
         if (doorButton)
         {
             door.Unlock();
@@ -52,8 +57,13 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
             }
             else
             {
-                HologramDisplay.Instance.Show(endgameMessage);
-                StartCoroutine(FadeOut());
+                if (!endingStarted)
+                {
+                    endingStarted = true;
+                    HologramDisplay.Instance.Show(endgameMessage);
+                    StartCoroutine(FadeOut());
+                    endingSequence.Begin();
+                }
             }
         }
     }

@@ -9,6 +9,7 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
     [SerializeField] private ComputerTerminal terminal;
     [SerializeField] private RectTransform canvas;
     [SerializeField] private float fadeDuration;
+    [SerializeField] private AudioSource courseSetSound;
 
     private FocusGlow glow;
     private Plane dragPlane;
@@ -66,6 +67,7 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
         {
             cursorTransform.position = targetPosition.position;
             completed = true;
+            courseSetSound.Play();
             terminal.TryRepair();
         }
     }

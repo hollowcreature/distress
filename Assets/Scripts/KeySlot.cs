@@ -8,6 +8,7 @@ public class KeySlot : MonoBehaviour, IFocusInteractable
     [SerializeField] private GameObject keyObject;
     [SerializeField] private Transform insertAnchor;
     [SerializeField] private float insertDuration = 2f;
+    [SerializeField] private AudioSource keyInsertSound;
 
     private FocusGlow glow;
     private Collider keyCollider;
@@ -45,6 +46,8 @@ public class KeySlot : MonoBehaviour, IFocusInteractable
         inserted = true;
         foreach (var r in keyRenderers)
             r.enabled = true;
+
+        keyInsertSound.Play();
         StartCoroutine(InsertKey());
     }
 

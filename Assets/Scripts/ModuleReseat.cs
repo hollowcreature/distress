@@ -7,6 +7,7 @@ public class ModuleReseat : MonoBehaviour, IFocusInteractable
     [SerializeField] private Vector3 pushAxis = Vector3.forward;
     [SerializeField] private float pushDistance = 0.3f;
     [SerializeField] private float snapThreshhold = 0.8f;
+    [SerializeField] private AudioSource reseatSound;
 
     private FocusGlow glow;
     private bool completed;
@@ -61,6 +62,7 @@ public class ModuleReseat : MonoBehaviour, IFocusInteractable
             currentPush = pushDistance;
             moduleTransform.localPosition = initialLocalPos + pushAxis.normalized * currentPush;
             completed = true;
+            reseatSound.Play();
             module.OnModuleReseated();
         }
     }

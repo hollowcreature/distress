@@ -11,6 +11,7 @@ public class KeyPadKeyPress : MonoBehaviour, IFocusInteractable
     [SerializeField] private float pressDepth = 0.02f;
     [SerializeField] private float pressDuration = 0.1f;
     [SerializeField] private float returnDuration = 0.15f;
+    [SerializeField] private AudioSource keyPressSound;
 
     private FocusGlow glow;
     private Vector3 restLocalPos;
@@ -26,6 +27,8 @@ public class KeyPadKeyPress : MonoBehaviour, IFocusInteractable
 
     public void OnPress()
     {
+
+        keyPressSound.Play();
 
         StopAllCoroutines();
         StartCoroutine(PressAnim());

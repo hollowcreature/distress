@@ -103,10 +103,12 @@ public class FirstPersonAudio : MonoBehaviour
             audio.Pause();
         }
 
-        // Play audioToPlay if it was not playing.
+        // Resume or start audioToPlay if it was not playing.
         if (audioToPlay && !audioToPlay.isPlaying)
         {
-            audioToPlay.Play();
+            audioToPlay.UnPause();
+            if (!audioToPlay.isPlaying)
+                audioToPlay.Play();
         }
     }
 

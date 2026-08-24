@@ -16,6 +16,7 @@ public class GlassBreak : MonoBehaviour, IInteractable
             return;
         }
 
+        breakSound.Play();
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
         brokenGlass.SetActive(true);

@@ -13,6 +13,7 @@ public class ConfirmButton : MonoBehaviour, IFocusInteractable
     [SerializeField] private RepairTask generatorTask;
     [SerializeField] private RepairTask sensorTask;
     [SerializeField] private string blockedThought;
+    [SerializeField] private AudioSource pressSound;
 
     private FocusGlow glow;
     private RepairTask task;
@@ -37,6 +38,7 @@ public class ConfirmButton : MonoBehaviour, IFocusInteractable
         else if (requiredTask != null && !requiredTask.IsRepaired)
             ThoughtDisplay.Instance.Show(blockedThought);
 
+        pressSound.Play();
         StopAllCoroutines();
         StartCoroutine(PressAnim());
         task.TryRepair();

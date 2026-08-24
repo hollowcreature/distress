@@ -7,6 +7,7 @@ public class FuseSlot : MonoBehaviour, IFocusInteractable
     [SerializeField] private FocusGlow ghostGlow;
     [SerializeField] private GameObject ghostMesh;
     [SerializeField] private GameObject fuseMesh;
+    [SerializeField] private AudioSource insertSound;
 
     public static bool PlayerHasFuse;
     private bool inserted = false;
@@ -22,6 +23,7 @@ public class FuseSlot : MonoBehaviour, IFocusInteractable
 
         if (PlayerHasFuse)
         {
+            insertSound.Play();
             inserted = true;
             ghostMesh.SetActive(false);
             fuseMesh.SetActive(true);

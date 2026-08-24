@@ -9,6 +9,8 @@ public class CommMessage
     public string sender;
     public string timestamp;
     public string subject;
+    public bool showHologram;
+    public bool isRedownloaded;
     [TextArea] public string body;
     [HideInInspector] public bool isRead;
     [HideInInspector] public bool isUnlocked;
@@ -27,6 +29,8 @@ public class CommsInbox : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text detailTimestamp;
     [SerializeField] private TMPro.TMP_Text detailBody;
     [SerializeField] private GameObject navigationCursor;
+    [SerializeField] private AudioSource notificationSound;
+    [SerializeField] private AudioSource messageSelectSound;
 
     private int currIdx = 0;
 
@@ -39,7 +43,11 @@ public class CommsInbox : MonoBehaviour
     {
         messages[index].isUnlocked = true;
         RefreshList();
-        // audio and hologram notification
+        notificationSound.Play();
+        if (messages[index].showHologram)
+        {
+            HologramDisplay.Instance.Show("NEW MESSAGE RECEIVED...");
+        }
     }
 
     public void UnlockNext()
@@ -63,12 +71,13 @@ public class CommsInbox : MonoBehaviour
 
     public void SelectMessage(int index)
     {
+        messageSelectSound.Play();
         messages[index].isRead = true;
         detailSender.text = messages[index].sender;
         detailTimestamp.text = messages[index].timestamp;
         detailBody.text = messages[index].body;
 
-        if (index == messages.Length - 1)
+        if (index == messages.Length - 1 && !messages[index].isRedownloaded)
             navigationCursor.SetActive(true);
 
         RefreshList();

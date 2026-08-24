@@ -12,6 +12,7 @@ public class SensorSlider : MonoBehaviour, IFocusInteractable
     [SerializeField] private float maxBlinkInterval = 0.8f;
     [SerializeField] private Color correctColor = Color.green;
     [SerializeField] private Color incorrectColor = Color.red;
+    [SerializeField] private AudioSource beepSource;
 
     private FocusGlow glow;
     private Vector3 initialLocalPos;
@@ -53,6 +54,8 @@ public class SensorSlider : MonoBehaviour, IFocusInteractable
             blinkTimer = 0f;
             lightOn = !lightOn;
             indicatorLight.enabled = lightOn;
+            if (lightOn)
+                beepSource.Play();
         }
     }
 
