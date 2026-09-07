@@ -46,6 +46,7 @@ public class EndingSequence : MonoBehaviour
             StartCoroutine(FadeOut(shipHum, fadeDuration));
         yield return new WaitForSeconds(startDelay);
         HologramDisplay.Instance.Show("MISSION STATUS: FAILED");
+        AnnouncerController.Instance.PlayVoiceline(13, false);
         yield return new WaitForSeconds(3f);
         yield return ScreenFader.Instance.FadeToBlack();
         yield return new WaitForSeconds(1f);

@@ -40,7 +40,11 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
         {
             door.Unlock();
             if (!string.IsNullOrEmpty(hologramMessage))
+            {
                 HologramDisplay.Instance.Show(hologramMessage);
+                if (hologramMessage == "SENSOR BAY UNLOCKED")
+                    AnnouncerController.Instance.PlayVoiceline(2, false);
+            }
 
             StartCoroutine(FadeOut());
         }
@@ -53,6 +57,10 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
             {
                 glass.canTake = true;
                 HologramDisplay.Instance.Show(hologramMessage);
+                if (hologramMessage == "ACCESS DENIED")
+                {
+                    AnnouncerController.Instance.PlayVoiceline(9, false);
+                }
                 ObjectiveDisplay.Instance.Show("New Objective: Get the emergency key");
             }
             else
@@ -61,6 +69,7 @@ public class ScreenButton : MonoBehaviour, IFocusInteractable
                 {
                     endingStarted = true;
                     HologramDisplay.Instance.Show(endgameMessage);
+                    AnnouncerController.Instance.PlayVoiceline(12, false);
                     StartCoroutine(FadeOut());
                     endingSequence.Begin();
                 }

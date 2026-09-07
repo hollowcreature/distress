@@ -25,10 +25,12 @@ public class EndgameTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         HologramDisplay.Instance.Show("REDOWNLOADING MESSAGES...");
+        AnnouncerController.Instance.PlayVoiceline(7, false);
         yield return new WaitForSeconds(2f);
         comms.Redownload();
         yield return new WaitForSeconds(15f);
         HologramDisplay.Instance.Show("CRITICAL ERROR DETECTED - CONSULT VESSEL LOGS");
+        AnnouncerController.Instance.PlayVoiceline(8, false);
         yield return new WaitForSeconds(0.5f);
         logsButton.GetComponent<Collider>().enabled = true;
         logsButton.GetComponent<Renderer>().enabled = true;

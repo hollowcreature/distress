@@ -27,13 +27,15 @@ public class TaskResponder : MonoBehaviour
             introSequence.RestoreLights();
             SoundManager.Instance.shipHum.Play();
             SoundManager.Instance.genHum.Play();
-            HologramDisplay.Instance.Show("EMERGENCY GENERATOR — POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n UPTIME: 4 YEARS 6 MONTHS 1 DAYS \n STATUS: CRITICAL");
+            HologramDisplay.Instance.Show("POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n UPTIME: 4 YEARS 6 MONTHS 1 DAYS \n STATUS: CRITICAL");
+            AnnouncerController.Instance.PlayVoiceline(1, false);
         };
 
         senTask.OnRepaired += _ =>
         {
             computerTerminal.UpdateScreen();
             HologramDisplay.Instance.Show("SENSOR ARRAY ONLINE \n SCANNING ENVIRONMENT... \n PROXIMITY: CLEAR \n DEBRIS FIELD: NONE DETECTED \n NEAREST BODY: SOL SYSTEM — 0.3 LY \n ESTIMATED ARRIVAL: 43 DAYS");
+            AnnouncerController.Instance.PlayVoiceline(3, false);
         };
 
         commsTask.OnRepaired += _ =>
@@ -55,12 +57,14 @@ public class TaskResponder : MonoBehaviour
         {
             cryoPod.cryoCollider.enabled = true;
             StartCoroutine(navCursor.FadeOut());
+            AnnouncerController.Instance.PlayVoiceline(5, false);
         };
 
         keySlotTask.OnRepaired += _ =>
         {
             screenButton.escalatedPrivilege = true;
             HologramDisplay.Instance.Show("EMERGENCY PRIVILEGE ESCALATION INITIATED");
+            AnnouncerController.Instance.PlayVoiceline(10, false);
             airlockDoor.Unlock();
         };
     }

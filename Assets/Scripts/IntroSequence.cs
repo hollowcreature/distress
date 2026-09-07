@@ -46,12 +46,15 @@ public class IntroSequence : MonoBehaviour
         yield return ScreenFader.Instance.FadeFromBlack();
         HologramDisplay.Instance.Show("VESSEL DRIFTING OFF, READJUST COURSE IMMEDIATELY");
         yield return new WaitForSeconds(1f);
+
+        AnnouncerController.Instance.PlayVoiceline(0, true);
         foreach (var speaker in speakers)
         {
             speaker.generator = alarmAudio;
             speaker.loop = true;
             speaker.Play();
         }
+
         originalLightColors = new Color[sceneLights.Length];
         originalLightIntensities = new float[sceneLights.Length];
         for (int i = 0; i < sceneLights.Length; i++)
@@ -113,6 +116,7 @@ public class IntroSequence : MonoBehaviour
     private IEnumerator CrashSequence()
     {
         foreach (var speaker in speakers) speaker.Stop();
+        AnnouncerController.Instance.StopVoiceline();
         SoundManager.Instance.shipHum.Stop();
 
         yield return StartCoroutine(ShakeCamera());

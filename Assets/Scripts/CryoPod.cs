@@ -73,6 +73,7 @@ public class CryoPod : MonoBehaviour, IInteractable
         endgameTrigger.enabled = true;
         yield return new WaitForSeconds(1f);
         HologramDisplay.Instance.Show("TARGET PLANET REACHED: EARTH");
+        AnnouncerController.Instance.PlayVoiceline(6, false);
     }
 
     private IEnumerator RotateLid(Quaternion target, float duration)

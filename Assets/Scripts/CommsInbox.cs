@@ -47,6 +47,8 @@ public class CommsInbox : MonoBehaviour
         if (messages[index].showHologram)
         {
             HologramDisplay.Instance.Show("NEW MESSAGE RECEIVED...");
+            AnnouncerController.Instance.StopVoiceline();
+            AnnouncerController.Instance.PlayVoiceline(4, false);
         }
     }
 
