@@ -31,6 +31,7 @@ public class CommsInbox : MonoBehaviour
     [SerializeField] private GameObject navigationCursor;
     [SerializeField] private AudioSource notificationSound;
     [SerializeField] private AudioSource messageSelectSound;
+    [SerializeField] private TMPro.TMP_Text screenText;
 
     private int currIdx = 0;
 
@@ -80,7 +81,10 @@ public class CommsInbox : MonoBehaviour
         detailBody.text = messages[index].body;
 
         if (index == messages.Length - 1 && !messages[index].isRedownloaded)
+        {
             navigationCursor.SetActive(true);
+            screenText.text = "DATA RECEIVED \n PLEASE SET COURSE";
+        }
 
         RefreshList();
     }

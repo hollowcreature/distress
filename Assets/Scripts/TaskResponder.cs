@@ -17,6 +17,11 @@ public class TaskResponder : MonoBehaviour
     [SerializeField] private NavigationCursor navCursor;
     [SerializeField] private ScreenButton screenButton;
     [SerializeField] private SlidingDoor airlockDoor;
+    [SerializeField] private GameObject shutterButton;
+    [SerializeField] private GameObject solInfo;
+    [SerializeField] private ShutterController shutterController;
+    [SerializeField] private GameObject missionText;
+    [SerializeField] private GameObject statusText;
 
     void Awake()
     {
@@ -27,14 +32,18 @@ public class TaskResponder : MonoBehaviour
             introSequence.RestoreLights();
             SoundManager.Instance.shipHum.Play();
             SoundManager.Instance.genHum.Play();
-            HologramDisplay.Instance.Show("POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n UPTIME: 4 YEARS 6 MONTHS 1 DAYS \n STATUS: CRITICAL");
+            missionText.SetActive(true);
+            statusText.SetActive(true);
+            HologramDisplay.Instance.Show("POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n CRYO DURATION: 3 YEARS 2 MONTHS 14 DAYS");
             AnnouncerController.Instance.PlayVoiceline(1, false);
         };
 
         senTask.OnRepaired += _ =>
         {
+            shutterButton.SetActive(true);
+            solInfo.SetActive(true);
             computerTerminal.UpdateScreen();
-            HologramDisplay.Instance.Show("SENSOR ARRAY ONLINE \n SCANNING ENVIRONMENT... \n PROXIMITY: CLEAR \n DEBRIS FIELD: NONE DETECTED \n NEAREST BODY: SOL SYSTEM — 0.3 LY \n ESTIMATED ARRIVAL: 43 DAYS");
+            HologramDisplay.Instance.Show("SENSOR ARRAY ONLINE \n SCANNING ENVIRONMENT... \n PROXIMITY: CLEAR \n DEBRIS FIELD: NONE DETECTED");
             AnnouncerController.Instance.PlayVoiceline(3, false);
         };
 
@@ -57,6 +66,8 @@ public class TaskResponder : MonoBehaviour
         {
             cryoPod.cryoCollider.enabled = true;
             StartCoroutine(navCursor.FadeOut());
+            shutterController.Close();
+            HologramDisplay.Instance.Show("COURSE SET. \n RETURN TO CRYO SLEEP");
             AnnouncerController.Instance.PlayVoiceline(5, false);
         };
 

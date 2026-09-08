@@ -27,23 +27,60 @@ public class IntroSequence : MonoBehaviour
     [SerializeField] private float alarmLightMaxIntensity = 1.5f;
 
     [SerializeField] private AudioSource[] speakers;
+    [SerializeField] private OpeningSequence openingSequence;
+    [SerializeField] private TMPro.TMP_Text journalText;
+    [SerializeField] private CryoPod cryoPod;
+    [SerializeField] private AudioSource walkSound;
 
     private bool crashed = false;
     private Coroutine countdownCoroutine;
     private Coroutine alarmCoroutine;
+    private Coroutine introCoroutine;
     private Material alarmMatInstance;
     private Color[] originalLightColors;
     private float[] originalLightIntensities;
 
+    void Awake()
+    {
+        ScreenFader.Instance.FadeToBlack(0f);
+    }
+
     void Start()
     {
+        walkSound.volume = 0f;
         mainCanvas.SetActive(true);
+        if (openingSequence != null)
+            introCoroutine = StartCoroutine(openingSequence.Sequence(OnOpeningDone));
+        else
+            OnOpeningDone();
+    }
+
+    void Update()
+    {
+        if (introCoroutine != null && openingSequence != null && openingSequence.skippable && Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopCoroutine(introCoroutine);
+            introCoroutine = null;
+            openingSequence.Cleanup();
+            OnOpeningDone();
+        }
+    }
+
+    private void OnOpeningDone()
+    {
+        introCoroutine = null;
+        journalText.text = "";
+        journalText.alpha = 0f;
+        journalText.gameObject.SetActive(false);
         StartCoroutine(IntroFadeIn());
     }
 
     private IEnumerator IntroFadeIn()
     {
+        cryoPod.SnapInAndWake();
+        yield return new WaitForSeconds(0.5f);
         yield return ScreenFader.Instance.FadeFromBlack();
+        walkSound.volume = 0.3f;
         HologramDisplay.Instance.Show("VESSEL DRIFTING OFF, READJUST COURSE IMMEDIATELY");
         yield return new WaitForSeconds(1f);
 

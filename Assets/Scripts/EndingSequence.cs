@@ -12,13 +12,6 @@ public class EndingSequence : MonoBehaviour
     [SerializeField][TextArea] private string goodEndingText;
     [SerializeField] private AudioSource shipHum;
 
-    void Awake()
-    {
-        journalText.text = "";
-        journalText.alpha = 0f;
-        journalText.gameObject.SetActive(false);
-    }
-
     public void Begin()
     {
         StartCoroutine(Sequence());

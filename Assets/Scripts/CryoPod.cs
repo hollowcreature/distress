@@ -18,6 +18,10 @@ public class CryoPod : MonoBehaviour, IInteractable
     [SerializeField] private AudioClip cryoSoundSleep;
     [SerializeField] private AudioClip cryoSoundWakeUp;
     [SerializeField] private AudioSource cryoSound;
+    [SerializeField] private GameObject solInfo;
+    [SerializeField] private GameObject missionText;
+    [SerializeField] private GameObject statusText;
+    [SerializeField] private RectTransform hologramRTransform;
 
     public Collider cryoCollider;
     private Quaternion lidClosedRot;
@@ -40,6 +44,23 @@ public class CryoPod : MonoBehaviour, IInteractable
         cryoSound.generator = cryoSoundSleep;
         cryoSound.Play();
         StartCoroutine(EnterSequence());
+    }
+
+    public void SnapInAndWake()
+    {
+        FocusController.Instance.EnterCutscene(podInteriorAnchor, null);
+        StartCoroutine(WakeSequence());
+    }
+
+    private IEnumerator WakeSequence()
+    {
+        cryoSound.generator = cryoSoundWakeUp;
+        cryoSound.Play();
+        yield return StartCoroutine(RotateLid(lidOpenRot, lidOpenDuration));
+        yield return new WaitForSeconds(1f);
+        FocusController.Instance.ExitCutscene();
+        yield return new WaitForSeconds(lidCloseDelay);
+        yield return StartCoroutine(RotateLid(lidClosedRot, lidCloseDuration));
     }
 
     private IEnumerator EnterSequence()
@@ -71,6 +92,13 @@ public class CryoPod : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(lidCloseDelay);
         yield return StartCoroutine(RotateLid(lidClosedRot, lidCloseDuration));
         endgameTrigger.enabled = true;
+
+        solInfo.SetActive(false);
+        missionText.SetActive(false);
+        statusText.SetActive(false);
+        hologramRTransform.sizeDelta = new Vector2(hologramRTransform.sizeDelta.x, 185.8978f);
+        hologramRTransform.anchoredPosition = new Vector2(-0.0096301f, -9.8348e-07f);
+
         yield return new WaitForSeconds(1f);
         HologramDisplay.Instance.Show("TARGET PLANET REACHED: EARTH");
         AnnouncerController.Instance.PlayVoiceline(6, false);

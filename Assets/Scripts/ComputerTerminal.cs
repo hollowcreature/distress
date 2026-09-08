@@ -34,11 +34,11 @@ public class ComputerTerminal : RepairTask
         }
         else if (sensorTask.IsRepaired)
         {
-            screenText.text = "SENSOR ARRAY RESTORED - COMMS OFFLINE";
+            screenText.text = "COMMS OFFLINE \n RECALIBRATE ANTENNA AT THE COMMUNICATION DEVICE BEHIND YOU";
         }
         else if (generatorTask.IsRepaired)
         {
-            screenText.text = "POWER RESTORED - SENSOR ARRAY OFFLINE";
+            screenText.text = "SENSOR ARRAY OFFLINE \n PROCEED TO SENSOR BAY FOR REPAIRS";
             sensorDoorButton.SetActive(true);
         }
         else
@@ -50,7 +50,6 @@ public class ComputerTerminal : RepairTask
 
     protected override bool AttemptStep()
     {
-        HologramDisplay.Instance.Show("COURSE SET. \n RETURN TO CRYO SLEEP");
         return true;
     }
 }

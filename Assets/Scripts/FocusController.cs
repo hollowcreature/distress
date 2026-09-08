@@ -159,6 +159,7 @@ public class FocusController : MonoBehaviour
     }
     public void EnterCutscene(Transform anchor, System.Action onArrived)
     {
+        originalConstraints = playerRB.constraints;
         playerRB.constraints = RigidbodyConstraints.FreezeAll;
         playerMesh.enabled = false;
         SetControls(false);

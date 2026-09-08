@@ -5,6 +5,7 @@ public class EndgameTrigger : MonoBehaviour
 {
     [SerializeField] private CommsInbox comms;
     [SerializeField] private GameObject logsButton;
+    [SerializeField] private ShutterController shutterController;
     private bool triggered = false;
 
     void Awake()
@@ -23,6 +24,7 @@ public class EndgameTrigger : MonoBehaviour
 
     private IEnumerator EndgameEvent()
     {
+        shutterController.Open();
         yield return new WaitForSeconds(1f);
         HologramDisplay.Instance.Show("REDOWNLOADING MESSAGES...");
         AnnouncerController.Instance.PlayVoiceline(7, false);

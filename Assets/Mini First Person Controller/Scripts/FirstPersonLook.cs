@@ -19,8 +19,9 @@ public class FirstPersonLook : MonoBehaviour
 
     void Start()
     {
-        // Lock the mouse cursor to the game screen.
         Cursor.lockState = CursorLockMode.Locked;
+        velocity.x = character.localEulerAngles.y;
+        velocity.y = -transform.localEulerAngles.x;
     }
 
     void Update()
