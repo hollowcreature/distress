@@ -6,6 +6,7 @@ public class Interaction : MonoBehaviour
     public float interact_range_hysteresis = 1f;
     public float loseCastRadius = 0.15f;
     public GameObject interact_prompt;
+    public string hiddenPromptTag = "EvilDoor";
     IInteractable current_interactable = null;
 
     void LateUpdate()
@@ -41,7 +42,9 @@ public class Interaction : MonoBehaviour
         if (current_interactable is RepairTask task && task.IsRepaired && !task.AlwaysInteractable)
             current_interactable = null;
 
-        interact_prompt.SetActive(current_interactable != null);
+        bool showPrompt = current_interactable != null
+            && (current_interactable as Component)?.CompareTag(hiddenPromptTag) != true;
+        interact_prompt.SetActive(showPrompt);
 
         if (Input.GetKeyDown(KeyCode.E) && current_interactable != null)
             current_interactable.Interact();

@@ -10,6 +10,7 @@ public class OpeningSequence : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float typeSpeed = 0.04f;
     [SerializeField] private float silenceAfterCryo = 1.5f;
+    [SerializeField] private AudioSource writingSource;
     public bool skippable = false;
     private string journalEntry = "Another day, nothing yet. Sector 7 came up empty like the rest.\n No atmosphere, no water, nothing worth bringing home.\n Going back to cryo. Maybe sector 8 will be different.\n    Darlene";
 
@@ -25,13 +26,19 @@ public class OpeningSequence : MonoBehaviour
         var charWait = new WaitForSeconds(typeSpeed);
         var pauseWait = new WaitForSeconds(0.5f);
 
+        writingSource.Play();
         foreach (char c in journalEntry)
         {
             journalText.text += c;
             yield return charWait;
             if (c == '.' || c == '!' || c == '?' || c == ',')
+            {
+                writingSource.Pause();
                 yield return pauseWait;
+                writingSource.UnPause();
+            }
         }
+        writingSource.Stop();
 
         yield return new WaitForSeconds(1f);
 
@@ -57,5 +64,6 @@ public class OpeningSequence : MonoBehaviour
     public void Cleanup()
     {
         journalText.text = "";
+        writingSource.Stop();
     }
 }

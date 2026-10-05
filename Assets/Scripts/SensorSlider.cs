@@ -13,6 +13,7 @@ public class SensorSlider : MonoBehaviour, IFocusInteractable
     [SerializeField] private Color correctColor = Color.green;
     [SerializeField] private Color incorrectColor = Color.red;
     [SerializeField] private AudioSource beepSource;
+    [SerializeField] private AudioClip beepSound;
 
     private FocusGlow glow;
     private Vector3 initialLocalPos;
@@ -55,7 +56,7 @@ public class SensorSlider : MonoBehaviour, IFocusInteractable
             lightOn = !lightOn;
             indicatorLight.enabled = lightOn;
             if (lightOn)
-                beepSource.Play();
+                beepSource.PlayOneShot(beepSound);
         }
     }
 

@@ -35,7 +35,7 @@ public class ShutterButton : MonoBehaviour, IFocusInteractable
     public void OnDrag(Ray mouseRay) { }
     public void OnRelease() { }
 
-    private IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
         float t = 0f;
         while (t < 1f)

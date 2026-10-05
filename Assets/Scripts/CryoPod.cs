@@ -77,6 +77,11 @@ public class CryoPod : MonoBehaviour, IInteractable
     private IEnumerator SleepSequence()
     {
         HologramDisplay.Instance.Clear();
+        solInfo.SetActive(false);
+        missionText.SetActive(false);
+        statusText.SetActive(false);
+        hologramRTransform.sizeDelta = new Vector2(hologramRTransform.sizeDelta.x, 185.8978f);
+        hologramRTransform.anchoredPosition = new Vector2(-0.0096301f, -9.8348e-07f);
         yield return StartCoroutine(RotateLid(lidClosedRot, lidCloseDuration));
         yield return ScreenFader.Instance.FadeToBlack();
         sun.SetActive(false);
@@ -92,12 +97,6 @@ public class CryoPod : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(lidCloseDelay);
         yield return StartCoroutine(RotateLid(lidClosedRot, lidCloseDuration));
         endgameTrigger.enabled = true;
-
-        solInfo.SetActive(false);
-        missionText.SetActive(false);
-        statusText.SetActive(false);
-        hologramRTransform.sizeDelta = new Vector2(hologramRTransform.sizeDelta.x, 185.8978f);
-        hologramRTransform.anchoredPosition = new Vector2(-0.0096301f, -9.8348e-07f);
 
         yield return new WaitForSeconds(1f);
         HologramDisplay.Instance.Show("TARGET PLANET REACHED: EARTH");

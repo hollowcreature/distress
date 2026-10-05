@@ -17,11 +17,13 @@ public class TaskResponder : MonoBehaviour
     [SerializeField] private NavigationCursor navCursor;
     [SerializeField] private ScreenButton screenButton;
     [SerializeField] private SlidingDoor airlockDoor;
-    [SerializeField] private GameObject shutterButton;
+    [SerializeField] private GameObject shutterButtonObject;
+    [SerializeField] private ShutterButton shutterButton;
     [SerializeField] private GameObject solInfo;
     [SerializeField] private ShutterController shutterController;
     [SerializeField] private GameObject missionText;
     [SerializeField] private GameObject statusText;
+    [SerializeField] private TMPro.TMP_Text computerText;
 
     void Awake()
     {
@@ -30,6 +32,8 @@ public class TaskResponder : MonoBehaviour
             HologramDisplay.Instance.Clear();
             computerTerminal.UpdateScreen();
             introSequence.RestoreLights();
+
+            SoundManager.Instance.darkAmbience.Stop();
             SoundManager.Instance.shipHum.Play();
             SoundManager.Instance.genHum.Play();
             missionText.SetActive(true);
@@ -40,7 +44,7 @@ public class TaskResponder : MonoBehaviour
 
         senTask.OnRepaired += _ =>
         {
-            shutterButton.SetActive(true);
+            shutterButtonObject.SetActive(true);
             solInfo.SetActive(true);
             computerTerminal.UpdateScreen();
             HologramDisplay.Instance.Show("SENSOR ARRAY ONLINE \n SCANNING ENVIRONMENT... \n PROXIMITY: CLEAR \n DEBRIS FIELD: NONE DETECTED");
@@ -66,7 +70,13 @@ public class TaskResponder : MonoBehaviour
         {
             cryoPod.cryoCollider.enabled = true;
             StartCoroutine(navCursor.FadeOut());
-            shutterController.Close();
+            if (!shutterButtonObject.activeSelf)
+                shutterController.Close();
+            else
+            {
+                StartCoroutine(shutterButton.FadeOut());
+            }
+            computerText.text = "";
             HologramDisplay.Instance.Show("COURSE SET. \n RETURN TO CRYO SLEEP");
             AnnouncerController.Instance.PlayVoiceline(5, false);
         };

@@ -18,6 +18,8 @@ public class ShutterController : MonoBehaviour
     private Vector3[] closedPositions;
     private bool[] positionsCaptured;
     private Coroutine activeCoroutine;
+    [SerializeField] private AudioSource shutterSound;
+    [SerializeField] private AudioClip shutterSoundClip;
 
     void OnEnable()
     {
@@ -63,7 +65,12 @@ public class ShutterController : MonoBehaviour
                 closedPositions[i] = panels[i].panel.localPosition;
                 positionsCaptured[i] = true;
             }
+
             yield return new WaitForSeconds(panels[i].delayBefore);
+            if (i % 3 == 0)
+            {
+                shutterSound.PlayOneShot(shutterSoundClip);
+            }
             StartCoroutine(SlidePanel(panels[i].panel, panels[i].panel.localPosition, closedPositions[i] + panels[i].openOffset, panels[i].duration));
         }
     }
@@ -74,6 +81,10 @@ public class ShutterController : MonoBehaviour
         {
             if (panels[i].panel == null || !positionsCaptured[i]) continue;
             yield return new WaitForSeconds(panels[i].delayBefore);
+            if (i % 3 == 0)
+            {
+                shutterSound.PlayOneShot(shutterSoundClip);
+            }
             StartCoroutine(SlidePanel(panels[i].panel, panels[i].panel.localPosition, closedPositions[i], panels[i].duration));
         }
     }

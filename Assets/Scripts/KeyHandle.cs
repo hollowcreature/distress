@@ -5,6 +5,8 @@ public class KeyHandle : MonoBehaviour, IFocusInteractable
     [SerializeField] private KeySlotTask task;
     [SerializeField] private Transform pivot;
     [SerializeField] private Vector3 rotationAxis = Vector3.up;
+    [SerializeField] private AudioSource keySoundSource;
+    [SerializeField] private AudioClip keyTurnSound;
 
     private float angle;
     private FocusGlow glow;
@@ -76,6 +78,8 @@ public class KeyHandle : MonoBehaviour, IFocusInteractable
         if (angle >= 90f)
         {
             thoughtShown = true;
+            keySoundSource.generator = keyTurnSound;
+            keySoundSource.Play();
             task.TryRepair();
         }
 

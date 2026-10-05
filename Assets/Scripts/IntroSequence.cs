@@ -31,6 +31,7 @@ public class IntroSequence : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text journalText;
     [SerializeField] private CryoPod cryoPod;
     [SerializeField] private AudioSource walkSound;
+    [SerializeField] private AudioSource crashAudio;
 
     private bool crashed = false;
     private Coroutine countdownCoroutine;
@@ -77,12 +78,8 @@ public class IntroSequence : MonoBehaviour
 
     private IEnumerator IntroFadeIn()
     {
-        cryoPod.SnapInAndWake();
-        yield return new WaitForSeconds(0.5f);
-        yield return ScreenFader.Instance.FadeFromBlack();
         walkSound.volume = 0.3f;
         HologramDisplay.Instance.Show("VESSEL DRIFTING OFF, READJUST COURSE IMMEDIATELY");
-        yield return new WaitForSeconds(1f);
 
         AnnouncerController.Instance.PlayVoiceline(0, true);
         foreach (var speaker in speakers)
@@ -102,6 +99,10 @@ public class IntroSequence : MonoBehaviour
         alarmMatInstance = Instantiate(alarmMat);
         foreach (var panel in emissivePanels) panel.material = alarmMatInstance;
         alarmCoroutine = StartCoroutine(PulseAlarm());
+
+        cryoPod.SnapInAndWake();
+        yield return new WaitForSeconds(0.5f);
+        yield return ScreenFader.Instance.FadeFromBlack();
     }
 
     private IEnumerator PulseAlarm()
@@ -155,14 +156,15 @@ public class IntroSequence : MonoBehaviour
         foreach (var speaker in speakers) speaker.Stop();
         AnnouncerController.Instance.StopVoiceline();
         SoundManager.Instance.shipHum.Stop();
-
+        crashAudio.Play();
         yield return StartCoroutine(ShakeCamera());
         yield return ScreenFader.Instance.FadeToBlack(0.05f);
         playerRoot.SetPositionAndRotation(wakeUpPosition.position, wakeUpPosition.rotation);
         TurnOffLights();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(crashAudio.clip.length);
         HologramDisplay.Instance.Show("EMERGENCY GENERATOR ENGAGED\n PLEASE RESTORE POWER");
         yield return ScreenFader.Instance.FadeFromBlack(wakeUpFadeDuration);
+        SoundManager.Instance.darkAmbience.Play();
         yield return new WaitForSeconds(2f);
         genDoorLeft.Open();
     }

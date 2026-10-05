@@ -11,6 +11,8 @@ public class EndingSequence : MonoBehaviour
     [SerializeField][TextArea] private string badEndingText;
     [SerializeField][TextArea] private string goodEndingText;
     [SerializeField] private AudioSource shipHum;
+    [SerializeField] private AudioSource writingSource;
+    [SerializeField] private CreditsSequence creditsSequence;
 
     public void Begin()
     {
@@ -52,12 +54,35 @@ public class EndingSequence : MonoBehaviour
         var charWait = new WaitForSeconds(typeSpeed);
         var pauseWait = new WaitForSeconds(1.0f);
 
+        writingSource.Play();
         foreach (char c in text)
         {
             journalText.text += c;
             yield return charWait;
             if (c == '.' || c == '!' || c == '?' || c == '\n')
+            {
+                writingSource.Pause();
                 yield return pauseWait;
+                writingSource.UnPause();
+            }
         }
+        writingSource.Stop();
+
+        yield return new WaitForSeconds(3f);
+        yield return FadeOutText(1.5f);
+        yield return new WaitForSeconds(3f);
+        creditsSequence.Begin();
+    }
+
+    private IEnumerator FadeOutText(float duration)
+    {
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            journalText.alpha = Mathf.Lerp(1f, 0f, t);
+            yield return null;
+        }
+        journalText.alpha = 0f;
     }
 }
