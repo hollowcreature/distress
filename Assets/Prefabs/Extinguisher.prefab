@@ -297,10 +297,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,9 +320,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &5110484857684530316
 MeshFilter:
@@ -1053,10 +1057,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1074,9 +1080,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1611336632942180540
 MeshFilter:
@@ -1814,10 +1822,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1835,9 +1845,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &6800948200832020182
 MeshFilter:
@@ -2570,10 +2582,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2591,9 +2605,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1749877154990717325
 MeshFilter:
@@ -3704,10 +3720,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3725,9 +3743,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &5786535784909092954
 MeshFilter:
@@ -4776,10 +4796,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 6b07e948838623044b80f6c0e95cc58e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4797,9 +4819,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &7860807070306031567
 MeshFilter:
@@ -5910,10 +5934,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5931,9 +5957,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2121203758042001785
 MeshFilter:
@@ -6502,10 +6530,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1b863d24f8920454b9f59ab5a50ab21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6523,9 +6553,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1874519761994523230
 MeshFilter:
@@ -7341,6 +7373,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7362,9 +7396,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &4561707585551482092
 MeshFilter:
@@ -9147,10 +9183,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 5dd497d939398244f961aadab0e50a0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9168,9 +9206,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &8721934402780442644
 MeshFilter:
@@ -9266,14 +9306,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 2.3905237, y: -0.1483658}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 040000000500000006000000050000000700000006000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9283,14 +9323,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 2.7154872, y: -0.14836583}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 08000000090000000a000000090000000b0000000a000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9300,14 +9340,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 2.1222384, y: -0.14836645}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 0c0000000d0000000e0000000d0000000f0000000e000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9317,14 +9357,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 1.8123891, y: -0.14836648}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 100000001100000012000000110000001300000012000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9334,14 +9374,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 1.5063188, y: -0.14836645}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 140000001500000016000000150000001700000016000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9351,14 +9391,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 1.2210515, y: -0.1483643}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 18000000190000001a000000190000001b0000001a000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9368,14 +9408,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 0.95463586, y: -0.14836633}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 1c0000001d0000001e0000001d0000001f0000001e000000
     m_SmoothingGroup: 1
     m_Uv:
@@ -9385,14 +9425,14 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
+      m_Offset: {x: 0.671237, y: -0.14836633}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
     m_SubmeshIndex: 0
     m_ManualUV: 0
     elementGroup: -1
-    m_TextureGroup: -1
+    m_TextureGroup: 0
   - m_Indexes: 220000002100000020000000
     m_SmoothingGroup: 0
     m_Uv:
@@ -9767,38 +9807,38 @@ MonoBehaviour:
   - {x: 0.0000016992695, y: 0.84565866, z: 0.0000046334444}
   - {x: 0.38521457, y: 0.84565866, z: 0.0000051408674}
   m_Textures0:
-  - {x: -0.1560446, y: -0.42927372}
-  - {x: -0.15604272, y: 0.84565943}
-  - {x: 0.12247755, y: -0.42927372}
-  - {x: 0.12248027, y: 0.84565943}
-  - {x: -0.16204871, y: -0.42927325}
-  - {x: -0.16204955, y: 0.8456599}
-  - {x: 0.1300473, y: -0.42927325}
-  - {x: 0.13004652, y: 0.8456599}
-  - {x: -0.13004515, y: -0.42927396}
-  - {x: -0.1300481, y: 0.8456592}
-  - {x: 0.16205019, y: -0.42927396}
-  - {x: 0.16204792, y: 0.8456592}
-  - {x: -0.12248157, y: -0.42927435}
-  - {x: -0.12248533, y: 0.84565884}
-  - {x: 0.15604375, y: -0.42927435}
-  - {x: 0.15603934, y: 0.84565884}
-  - {x: -0.15604648, y: -0.4292753}
-  - {x: -0.15604983, y: 0.8456578}
-  - {x: 0.12247567, y: -0.4292753}
-  - {x: 0.12247318, y: 0.8456578}
-  - {x: -0.16204928, y: -0.4292753}
-  - {x: -0.16204976, y: 0.8456579}
-  - {x: 0.13004674, y: -0.4292753}
-  - {x: 0.13004631, y: 0.8456579}
-  - {x: -0.1300441, y: -0.4292754}
-  - {x: -0.13004158, y: 0.84565777}
-  - {x: 0.16205123, y: -0.4292754}
-  - {x: 0.16205443, y: 0.84565777}
-  - {x: -0.12247947, y: -0.42927435}
-  - {x: -0.12247548, y: 0.84565884}
-  - {x: 0.15604584, y: -0.42927435}
-  - {x: 0.15604919, y: 0.84565884}
+  - {x: -2.5465684, y: -0.28090793}
+  - {x: -2.5465665, y: 0.99402523}
+  - {x: -2.2680461, y: -0.28090793}
+  - {x: -2.2680435, y: 0.99402523}
+  - {x: -2.877536, y: -0.28090742}
+  - {x: -2.8775368, y: 0.9940257}
+  - {x: -2.58544, y: -0.28090742}
+  - {x: -2.5854406, y: 0.9940257}
+  - {x: -2.2522836, y: -0.2809075}
+  - {x: -2.2522864, y: 0.99402565}
+  - {x: -1.9601882, y: -0.2809075}
+  - {x: -1.9601905, y: 0.99402565}
+  - {x: -1.9348707, y: -0.28090787}
+  - {x: -1.9348744, y: 0.99402535}
+  - {x: -1.6563454, y: -0.28090787}
+  - {x: -1.6563498, y: 0.99402535}
+  - {x: -1.6623653, y: -0.28090885}
+  - {x: -1.6623687, y: 0.9940243}
+  - {x: -1.3838432, y: -0.28090885}
+  - {x: -1.3838456, y: 0.9940243}
+  - {x: -1.3831007, y: -0.280911}
+  - {x: -1.3831012, y: 0.9940222}
+  - {x: -1.0910047, y: -0.280911}
+  - {x: -1.0910051, y: 0.9940222}
+  - {x: -1.08468, y: -0.28090906}
+  - {x: -1.0846775, y: 0.9940241}
+  - {x: -0.79258466, y: -0.28090906}
+  - {x: -0.79258144, y: 0.9940241}
+  - {x: -0.79371643, y: -0.28090802}
+  - {x: -0.7937125, y: 0.9940252}
+  - {x: -0.51519114, y: -0.28090802}
+  - {x: -0.5151878, y: 0.9940252}
   - {x: -0.38521275, y: 0.0000022862218}
   - {x: -0.00000013577665, y: 0.0000010843883}
   - {x: -0.2723856, y: 0.25464836}
@@ -9850,38 +9890,38 @@ MonoBehaviour:
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
-  - {x: -0.0000042049587, y: -0.0000006365337, z: 1, w: -1}
-  - {x: -0.0000031944637, y: -0.00000073782735, z: 1, w: -1}
-  - {x: -0.72373974, y: 0.0000014159084, z: 0.690073, w: -1}
-  - {x: -0.72373974, y: 0.0000014092761, z: 0.6900731, w: -1}
-  - {x: -0.7237397, y: -0.0000014159086, z: 0.6900731, w: -1}
-  - {x: -0.7237398, y: -0.0000014092761, z: 0.690073, w: -1}
-  - {x: -1, y: 0.0000010089344, z: 0.0000011824756, w: -1}
+  - {x: -0.000004204959, y: -0.0000006365337, z: 1, w: -1}
+  - {x: -0.0000031944635, y: -0.00000073782735, z: 1, w: -1}
+  - {x: -0.72373974, y: 0.0000014159084, z: 0.6900731, w: -1}
+  - {x: -0.72373974, y: 0.000001409276, z: 0.690073, w: -1}
+  - {x: -0.72373974, y: -0.0000014159087, z: 0.690073, w: -1}
+  - {x: -0.72373974, y: -0.0000014092761, z: 0.690073, w: -1}
+  - {x: -1, y: 0.0000010089343, z: 0.0000011824756, w: -1}
   - {x: -1, y: 0.0000009925459, z: 0.0000009907221, w: -1}
   - {x: -1, y: -0.0000010089343, z: 0.0000011824756, w: -1}
-  - {x: -1, y: -0.0000009925459, z: 0.0000010226809, w: -1}
-  - {x: -0.7237396, y: 0.0000005484954, z: -0.6900732, w: -1}
-  - {x: -0.7237402, y: 0.00000062996713, z: -0.69007254, w: -1}
+  - {x: -1, y: -0.0000009925458, z: 0.0000010226809, w: -1}
+  - {x: -0.7237396, y: 0.0000005484954, z: -0.69007313, w: -1}
+  - {x: -0.7237402, y: 0.0000006299672, z: -0.6900726, w: -1}
   - {x: -0.7237396, y: -0.00000054849534, z: -0.69007313, w: -1}
   - {x: -0.7237402, y: -0.00000062996713, z: -0.69007254, w: -1}
   - {x: 0.000004204959, y: -0.00000045250732, z: -1, w: -1}
-  - {x: 0.0000032596568, y: -0.00000035215692, z: -1, w: -1}
+  - {x: 0.0000032596565, y: -0.00000035215692, z: -1, w: -1}
   - {x: 0.0000042049587, y: 0.00000045250727, z: -1, w: -1}
   - {x: 0.0000032596565, y: 0.00000035215692, z: -1, w: -1}
   - {x: 0.7237398, y: -0.00000094983346, z: -0.690073, w: -1}
-  - {x: 0.7237398, y: -0.0000009553513, z: -0.69007295, w: -1}
+  - {x: 0.7237398, y: -0.0000009553514, z: -0.69007295, w: -1}
   - {x: 0.72373974, y: 0.00000094983335, z: -0.690073, w: -1}
   - {x: 0.7237398, y: 0.0000009553511, z: -0.69007295, w: -1}
   - {x: 1, y: -0.0000011446904, z: -0.0000011505168, w: -1}
   - {x: 1, y: -0.0000011601244, z: -0.0000009907221, w: -1}
-  - {x: 1, y: 0.0000011446903, z: -0.0000011505168, w: -1}
-  - {x: 1, y: 0.0000011601244, z: -0.0000010226809, w: -1}
-  - {x: 0.7237396, y: -0.00000041627314, z: 0.6900732, w: -1}
+  - {x: 1, y: 0.0000011446904, z: -0.0000011505169, w: -1}
+  - {x: 1, y: 0.0000011601244, z: -0.000001022681, w: -1}
+  - {x: 0.7237396, y: -0.00000041627314, z: 0.69007313, w: -1}
   - {x: 0.7237402, y: -0.0000003336745, z: 0.69007254, w: -1}
   - {x: 0.7237396, y: 0.00000041627314, z: 0.69007313, w: -1}
-  - {x: 0.7237402, y: 0.0000003336745, z: 0.69007254, w: -1}
-  - {x: -0.000004204959, y: 0.00000063653374, z: 1, w: -1}
-  - {x: -0.0000032270602, y: 0.0000007378273, z: 1, w: -1}
+  - {x: 0.7237402, y: 0.00000033367456, z: 0.69007254, w: -1}
+  - {x: -0.000004204959, y: 0.0000006365337, z: 1, w: -1}
+  - {x: -0.00000322706, y: 0.00000073782724, z: 1, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
@@ -9939,7 +9979,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1939
+  m_VersionIndex: 2148
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9991,10 +10031,12 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: bdb18b6607c333b479aad007c7d3bde8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10012,9 +10054,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &4570651623897721193
 MeshFilter:

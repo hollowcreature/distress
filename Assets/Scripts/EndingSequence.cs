@@ -13,6 +13,7 @@ public class EndingSequence : MonoBehaviour
     [SerializeField] private AudioSource shipHum;
     [SerializeField] private AudioSource writingSource;
     [SerializeField] private CreditsSequence creditsSequence;
+    [SerializeField] private GameObject firstPersonAudio;
 
     public void Begin()
     {
@@ -43,6 +44,7 @@ public class EndingSequence : MonoBehaviour
         HologramDisplay.Instance.Show("MISSION STATUS: FAILED");
         AnnouncerController.Instance.PlayVoiceline(13, false);
         yield return new WaitForSeconds(3f);
+        firstPersonAudio.SetActive(false);
         yield return ScreenFader.Instance.FadeToBlack();
         yield return new WaitForSeconds(1f);
 

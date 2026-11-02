@@ -24,6 +24,7 @@ public class EndgameTrigger : MonoBehaviour
 
     private IEnumerator EndgameEvent()
     {
+        comms.ResetTexts();
         shutterController.Open();
         yield return new WaitForSeconds(1f);
         HologramDisplay.Instance.Show("REDOWNLOADING MESSAGES...");

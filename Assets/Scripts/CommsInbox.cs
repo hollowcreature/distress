@@ -32,12 +32,21 @@ public class CommsInbox : MonoBehaviour
     [SerializeField] private AudioSource notificationSound;
     [SerializeField] private AudioSource messageSelectSound;
     [SerializeField] private TMPro.TMP_Text screenText;
+    [SerializeField] private float selectedDarkenFactor = 0.7f;
 
     private int currIdx = 0;
+    private int selectedIndex = -1;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    public void ResetTexts()
+    {
+        detailSender.text = "";
+        detailTimestamp.text = "";
+        detailBody.text = "";
     }
 
     public void UnlockMessage(int index)
@@ -76,6 +85,7 @@ public class CommsInbox : MonoBehaviour
     {
         messageSelectSound.Play();
         messages[index].isRead = true;
+        selectedIndex = index;
         detailSender.text = messages[index].sender;
         detailTimestamp.text = messages[index].timestamp;
         detailBody.text = messages[index].body;
@@ -103,6 +113,13 @@ public class CommsInbox : MonoBehaviour
             TMPro.TMP_Text label = btn.GetComponentInChildren<TMPro.TMP_Text>();
             string prefix = messages[i].isRead ? "" : "[NEW] ";
             label.text = prefix + messages[i].sender + " - " + messages[i].subject;
+
+            if (i == selectedIndex)
+            {
+                var buttonImage = btn.GetComponent<UnityEngine.UI.Image>();
+                Color c = buttonImage.color;
+                buttonImage.color = new Color(c.r * selectedDarkenFactor, c.g * selectedDarkenFactor, c.b * selectedDarkenFactor, c.a);
+            }
 
             int capturedIndex = i;
             btn.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => SelectMessage(capturedIndex));
