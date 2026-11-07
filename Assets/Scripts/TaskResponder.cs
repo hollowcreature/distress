@@ -24,6 +24,7 @@ public class TaskResponder : MonoBehaviour
     [SerializeField] private GameObject missionText;
     [SerializeField] private GameObject statusText;
     [SerializeField] private TMPro.TMP_Text computerText;
+    [SerializeField] private Light genBackLight;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class TaskResponder : MonoBehaviour
             statusText.SetActive(true);
             HologramDisplay.Instance.Show("POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n CRYO DURATION: 3 YEARS 2 MONTHS 14 DAYS");
             AnnouncerController.Instance.PlayVoiceline(1, false);
+            genBackLight.enabled = false;
         };
 
         senTask.OnRepaired += _ =>

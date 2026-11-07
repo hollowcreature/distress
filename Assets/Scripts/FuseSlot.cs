@@ -8,6 +8,7 @@ public class FuseSlot : MonoBehaviour, IFocusInteractable
     [SerializeField] private GameObject ghostMesh;
     [SerializeField] private GameObject fuseMesh;
     [SerializeField] private AudioSource insertSound;
+    [SerializeField] private Light backLight;
 
     public static bool PlayerHasFuse;
     private bool inserted = false;
@@ -29,6 +30,7 @@ public class FuseSlot : MonoBehaviour, IFocusInteractable
             fuseMesh.SetActive(true);
             PlayerHasFuse = false;
             panel.InsertFuse();
+            backLight.enabled = true;
         }
         else
         {
