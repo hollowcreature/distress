@@ -10,6 +10,7 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
     [SerializeField] private RectTransform canvas;
     [SerializeField] private float fadeDuration;
     [SerializeField] private AudioSource courseSetSound;
+    [SerializeField] private GameObject navTargetIndicator;
 
     private FocusGlow glow;
     private Plane dragPlane;
@@ -69,6 +70,7 @@ public class NavigationCursor : MonoBehaviour, IFocusInteractable
             completed = true;
             courseSetSound.Play();
             terminal.TryRepair();
+            navTargetIndicator.SetActive(false);
         }
     }
 

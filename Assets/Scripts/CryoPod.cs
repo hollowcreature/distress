@@ -14,7 +14,7 @@ public class CryoPod : MonoBehaviour, IInteractable
     [SerializeField] private GameObject sun;
     [SerializeField] private Light sunLight;
     [SerializeField] private GameObject earth;
-    [SerializeField] private Light sunLightFaceEarth;
+    [SerializeField] private GameObject sunLightFaceEarth;
     [SerializeField] private AudioClip cryoSoundSleep;
     [SerializeField] private AudioClip cryoSoundWakeUp;
     [SerializeField] private AudioSource cryoSound;
@@ -87,7 +87,7 @@ public class CryoPod : MonoBehaviour, IInteractable
         sun.SetActive(false);
         sunLight.enabled = false;
         earth.SetActive(true);
-        sunLightFaceEarth.enabled = true;
+        sunLightFaceEarth.SetActive(true);
         yield return new WaitForSeconds(3f);
         FocusController.Instance.ExitCutscene();
         cryoSound.generator = cryoSoundWakeUp;
