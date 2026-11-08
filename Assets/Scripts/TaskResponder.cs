@@ -25,6 +25,7 @@ public class TaskResponder : MonoBehaviour
     [SerializeField] private GameObject statusText;
     [SerializeField] private TMPro.TMP_Text computerText;
     [SerializeField] private Light genBackLight;
+    [SerializeField] private GameObject evilNumber;
 
     void Awake()
     {
@@ -39,9 +40,10 @@ public class TaskResponder : MonoBehaviour
             SoundManager.Instance.genHum.Play();
             missionText.SetActive(true);
             statusText.SetActive(true);
-            HologramDisplay.Instance.Show("POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n CRYO DURATION: 3 YEARS 2 MONTHS 14 DAYS");
+            HologramDisplay.Instance.Show("POWER RESTORED \n RUNNING DIAGNOSTICS... \n SHIP CRASH LOGGED... \n SHIP: ISV EXPLORER \n DATE: 2574.06.01 \n CRYO DURATION: 3 YEARS 2 MONTHS 14 DAYS \n SCHEDULED WAKE IS OVERDUE!!!");
             AnnouncerController.Instance.PlayVoiceline(1, false);
             genBackLight.enabled = false;
+            evilNumber.SetActive(true);
         };
 
         senTask.OnRepaired += _ =>

@@ -80,6 +80,7 @@ public class CommsInbox : MonoBehaviour
         UnlockNext();
     }
 
+    private bool nav_unlocked = false;
     public void SelectMessage(int index)
     {
         messageSelectSound.Play();
@@ -89,8 +90,9 @@ public class CommsInbox : MonoBehaviour
         detailTimestamp.text = messages[index].timestamp;
         detailBody.text = messages[index].body;
 
-        if (index == messages.Length - 1 && !messages[index].isRedownloaded)
+        if (index == messages.Length - 1 && !messages[index].isRedownloaded && !nav_unlocked)
         {
+            nav_unlocked = true;
             navigationCursor.SetActive(true);
             navTargetIndicator.SetActive(true);
             screenText.text = "DATA RECEIVED \n PLEASE SET COURSE";

@@ -22,6 +22,7 @@ public class CryoPod : MonoBehaviour, IInteractable
     [SerializeField] private GameObject missionText;
     [SerializeField] private GameObject statusText;
     [SerializeField] private RectTransform hologramRTransform;
+    [SerializeField] private TMPro.TMP_Text dateText;
 
     public Collider cryoCollider;
     private Quaternion lidClosedRot;
@@ -80,6 +81,7 @@ public class CryoPod : MonoBehaviour, IInteractable
         solInfo.SetActive(false);
         missionText.SetActive(false);
         statusText.SetActive(false);
+        dateText.text = "07.13.2574";
         hologramRTransform.sizeDelta = new Vector2(hologramRTransform.sizeDelta.x, 185.8978f);
         hologramRTransform.anchoredPosition = new Vector2(-0.0096301f, -9.8348e-07f);
         yield return StartCoroutine(RotateLid(lidClosedRot, lidCloseDuration));
